@@ -1,0 +1,13 @@
+[
+  [
+    "name" : "Initprocess",
+    "parameters" : [
+        "userAnsHolder" : new ObjectDataType("com.travel_recommender.model.UserAnswers")
+    ],
+    "results" : [
+        "Result" : new ObjectDataType("com.travel_recommender.model.UserAnswers")
+    ],
+    "displayName" : "Initprocess",
+    "icon" : ""
+  ]
+]

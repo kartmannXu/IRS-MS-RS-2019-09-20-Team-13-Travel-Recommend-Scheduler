@@ -1,0 +1,46 @@
+    <nz-layout >
+      <nz-header  >{{questions.question}}</nz-header>
+      <nz-content><!-- Content -->
+<!-- 		有关于显示什么样的内容
+		用switch来判断
+		//1.checkbox 2.date 3.edit 4.dropbox -->
+
+		<ul  [ngSwitch]="questions.type">
+				<li *ngSwitchCase="1"
+			      class="answer-checkbox">
+			    	<nz-radio-group [(ngModel)]="radioValue" (ngModelChange)="radiochange(radioValue)">
+			    		<label nz-radio nzValue="1">Yes</label>
+				        <label nz-radio nzValue="0">No</label>
+				    </nz-radio-group>
+			  </li>
+			  <li *ngSwitchCase="2"
+			      class="answer-date">
+			    	<nz-date-picker [(ngModel)]="date" (ngModelChange)="dateChange($event)" ></nz-date-picker>
+			  </li>
+			  <li *ngSwitchCase="3"
+			      class="answer-edit">
+			    <nz-input-number [(ngModel)]="demoValue" (ngModelChange)="inputChange()"  [nzMin]="0" [nzMax]="100000" [nzStep]="100"></nz-input-number>
+			  </li>
+			  <li *ngSwitchCase="4"
+			      class="answer-dropbox">
+			    	<nz-select style="width: 120px;" [(ngModel)]="selectedValue" nzAllowClear nzPlaceHolder="Choose" (ngModelChange)="dropboxChange()">
+			        <nz-option nzValue="Singapore" nzLabel="Singapore"></nz-option>
+			        </nz-select>
+			  </li>
+<!-- 			  <li *ngSwitchDefault
+			      class="answer-dropbox">
+			    	<nz-select
+					      style="width: 100%"
+					      nzMode="multiple"
+					      nzPlaceHolder="Inserted are removed"
+					      [(ngModel)]="listOfSelectedValue"
+					      (ngModelChange)="MultiselectChange(listOfSelectedValue)"
+					    >
+					      <ng-container *ngFor="let option of listOfOption">
+					        <nz-option  [nzLabel]="option" [nzValue]="option" *ngIf="isNotSelected(option)"></nz-option>
+					      </ng-container>
+					    </nz-select>
+			  </li> -->
+		</ul>
+      </nz-content>
+    </nz-layout>

@@ -1,0 +1,54 @@
+<!-- <img style="width:100%" alt="example" src="../../assets/img/silverash.png" />
+<nz-descriptions
+      nzTitle="Chinatown"
+      nzBordered
+      [nzColumn]="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }"
+    >
+
+      <nz-descriptions-item nzTitle="Suggested duration">
+        3h
+      </nz-descriptions-item>
+      	
+      <nz-descriptions-item nzTitle="opening time">8:00</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Closing time">18:00</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="position">Singapore</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ticket Price">$20.00</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ranking">$60.00</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="About">
+        Data disk type: MongoDB
+        <br />
+        Database version: 3.4
+        <br />
+        Package: dds.mongo.mid
+        <br />
+        Storage space: 10 GB
+        <br />
+        Replication_factor:3
+        <br />
+        Region: East China 1
+        <br />
+      </nz-descriptions-item>
+    </nz-descriptions> -->
+
+
+
+<img style="width:100%" alt="example" src="../../assets/img/silverash.png" />
+<nz-descriptions
+      [nzTitle]="Interests.spot_name"
+      nzBordered
+      [nzColumn]="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }"
+    >
+
+      <nz-descriptions-item nzTitle="Suggested duration">
+        {{Interests.est_duration}}
+      </nz-descriptions-item>
+      	
+      <nz-descriptions-item nzTitle="opening time">{{Interests.open_times}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Closing time">{{Interests.close_times}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="position">{{Interests.postal}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ticket Price">${{Interests.ticket}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ranking">{{Interests.score}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="About">
+        {{Interests.introduction}}
+      </nz-descriptions-item>
+</nz-descriptions>

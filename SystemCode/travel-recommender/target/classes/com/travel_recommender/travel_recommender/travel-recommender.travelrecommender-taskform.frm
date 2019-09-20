@@ -1,0 +1,4 @@
+{"id":"4bf83c8e-20ea-4535-b07e-21484e3a69d0","name":"travel-recommender.travelrecommender-taskform",
+"model":{"processName":"travelrecommender",
+"processId":"travel-recommender.travelrecommender",
+"name":"process","properties":[{"name":"userAnsHolder","typeInfo":{"type":"OBJECT","className":"com.travel_recommender.model.UserAnswers","multiple":false},"metaData":{"entries":[{"name":"field-readOnly","value":false}]}}],"formModelType":"org.kie.workbench.common.forms.jbpm.model.authoring.process.BusinessProcessFormModel"},"fields":[],"layoutTemplate":{"version":2,"style":"FLUID","layoutProperties":{},"rows":[]}}

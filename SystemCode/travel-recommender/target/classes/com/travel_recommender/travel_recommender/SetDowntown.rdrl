@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetDowntown"
+	dialect "mvel"
+	ruleflow-group "SetDowntown"
+	when
+		userAnsHolder : UserAnswers( ans : qnsDowntown )
+	then
+		userAnsHolder.setDowntown( ans );
+end

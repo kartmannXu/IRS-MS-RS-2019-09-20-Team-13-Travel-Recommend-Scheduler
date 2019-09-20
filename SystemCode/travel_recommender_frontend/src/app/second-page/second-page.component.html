@@ -1,0 +1,17 @@
+<h2>Delete the place you don't like.</h2>
+
+<app-messages></app-messages>
+<nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
+      
+<div *ngFor="let type of attrictions_list" style = "display: inline-block; ">
+      	<div nz-row>
+      		<nz-tag nzMode="closeable" (nzAfterClose)="afterClose(type)">{{type}}</nz-tag>
+        </div>
+      </div>
+</nz-checkbox-wrapper>
+<div class = "BFbutton">
+      <button nz-button nzType="primary"
+       (click)="nextpage()">Forward 
+
+      	<i nz-icon nzType="right"></i></button>
+ </div>

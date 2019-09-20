@@ -1,0 +1,392 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>未知 </title></head><body>
+<h1 id="push">不新建分支的情况下强行 push 项目正确打开方式</h1>
+<ol>
+<li><code>git checkout -b {已存在的分支名 A}</code></li>
+<li><code>git push origin {分支名 A} -f</code>，-f 强制 push</li>
+</ol>
+<p>这意味着远程仓库中可能有东西被抹掉，请慎重。</p>
+<h1 id="_1">终端中管理不想上传的目录或文件</h1>
+<ol>
+<li>
+<p>项目根目录下打开 git bash，新建 <code>.gitignore</code> 文件：</p>
+<p><code>touch .gitignore</code></p>
+</li>
+<li>
+<p><code>echo '{不想上传的目录或文件名，比如 node_model 和 .idea}' &gt;&gt; .gitignore</code></p>
+</li>
+<li><code>git status</code> 确认这些文件名确实被 git 忽略了</li>
+<li><code>git add . &amp;&amp; git commit -m "messege"</code></li>
+<li>正常 push</li>
+</ol>
+<h1 id="database-fields-spot-object-members">Database fields &amp; Spot object members</h1>
+<h3 id="spot-table"><strong>Spot</strong> table</h3>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<code>+--------------------+--------------+------+-----+---------+
+| Field              | Type         | Null | Key | Default |
++--------------------+--------------+------+-----+---------+
+| Spot_id            | int          | NO   | PRI | NULL    |
+| Spot_name          | varchar      | NO   |     | NULL    |
+| City_id            | int          | NO   |     | NULL    |
+| City_name          | varchar      | NO   |     | NULL    |
+| Country_id         | int          | NO   |     | NULL    |
+| Country_name       | varchar      | NO   |     | NULL    |
+| Postal             | int          | YES  |     | NULL    |
+| imageUrl           | varchar      | YES  |     | NULL    |
+| introduction       | varchar      | YES  |     | NULL    |
+| Address            | varchar      | YES  |     | NULL    |
+| Open_times         | varchar      | NO   |     | NULL    |
+| Close_times        | varchar      | NO   |     | NULL    |
+| Special_close_date | varchar      | YES  |     | NULL    |
+| Est_duration       | int          | NO   |     | NULL    |
+| Score              | float        | YES  |     | NULL    |
+| Gourmet            | float        | YES  |     | NULL    |
+| Cultural           | float        | YES  |     | NULL    |
+| Downtown           | float        | YES  |     | NULL    |
+| Bustle             | float        | YES  |     | NULL    |
+| Family             | float        | YES  |     | NULL    |
+| Shopping           | float        | YES  |     | NULL    |
+| Popular            | float        | YES  |     | NULL    |
+| Parks              | int          | YES  |     | NULL    |
+| Museums            | int          | YES  |     | NULL    |
+| Observation_deck   | int          | YES  |     | NULL    |
+| Gardens            | int          | YES  |     | NULL    |
+| Zoos               | int          | YES  |     | NULL    |
+| Themeparks         | int          | YES  |     | NULL    |
+| Neighbourhoods     | int          | YES  |     | NULL    |  
+| Religious_Sites    | int          | YES  |     | NULL    |  
+| Historical_Sites   | int          | YES  |     | NULL    |  
+| Shopping_Malls     | int          | YES  |     | NULL    |  
+| Resort             | int          | YES  |     | NULL    |   
+| Landmarks          | int          | YES  |     | NULL    |   
+| Island             | int          | YES  |     | NULL    |
+| Bridges            | int          | YES  |     | NULL    |  
+| Beaches            | int          | YES  |     | NULL    |  
++--------------------+--------------+------+-----+---------+</code>
+=======</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Null</th>
+<th>Key</th>
+<th>Default</th>
+<th>Extra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spot_id</td>
+<td>bigint(20)</td>
+<td>NO</td>
+<td>PRI</td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Spot_name</td>
+<td>varchar(255)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>City_id</td>
+<td>int(11)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>City_name</td>
+<td>varchar(255)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Country_id</td>
+<td>int(11)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Country_name</td>
+<td>varchar(255)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Postal</td>
+<td>int(11)</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>imageUrl</td>
+<td>varchar(255)</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>introduction</td>
+<td>varchar(255)</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Address</td>
+<td>varchar(255)</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Open_times</td>
+<td>varchar(255)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Close_times</td>
+<td>varchar(255)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Special_close_date</td>
+<td>varchar(255)</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Est_duration</td>
+<td>int(11)</td>
+<td>NO</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Score</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Gourmet</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Cultural</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Downtown</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Bustle</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Family</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Shopping</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Popular</td>
+<td>float</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Parks</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Museums</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Observation_deck</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Gardens</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Zoos</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Themeparks</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Neighbourhoods</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Religious_Sites</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Historical_Sites</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Shopping_Malls</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Resort</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Landmarks</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Island</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Bridges</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Activities</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>Beaches</td>
+<td>boolean</td>
+<td>YES</td>
+<td></td>
+<td>NULL</td>
+<td></td>
+</tr>
+<tr>
+<td>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 5c5aae395d791042536294f780aea7b1025bf43e</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</body></html>

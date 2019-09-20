@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+  <!--<environmentMode>FULL_ASSERT</environmentMode>--><!-- To slowly prove there are no bugs in this code -->
+  <moveThreadCount>AUTO</moveThreadCount><!-- To solve faster by saturating multiple CPU cores -->
+
+  <solutionClass>com.travel_recommender.opta.Solution</solutionClass>
+  <entityClass>com.travel_recommender.opta.SpotSnippet</entityClass>
+  <scoreDirectorFactory>
+    <scoreDrl>config/SpotArrangeServiceRule.drl</scoreDrl>
+  </scoreDirectorFactory>
+
+  <termination>
+    <minutesSpentLimit>1</minutesSpentLimit>
+  </termination>
+  <constructionHeuristic>
+    <constructionHeuristicType>WEAKEST_FIT</constructionHeuristicType>
+  </constructionHeuristic>
+  <localSearch>
+    <localSearchType>LATE_ACCEPTANCE</localSearchType>
+  </localSearch>
+</solver>

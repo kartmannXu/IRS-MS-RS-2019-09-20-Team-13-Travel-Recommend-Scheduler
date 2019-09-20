@@ -1,0 +1,162 @@
+package config;
+    dialect "java"
+
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+import com.travel_recommender.opta.Day;
+import com.travel_recommender.opta.Spot;
+import com.travel_recommender.opta.Solution;
+import com.travel_recommender.opta.SpotSnippet;
+import com.travel_recommender.opta.TimeCapsule;
+
+global HardSoftScoreHolder scoreHolder;
+
+// ############################################################################
+// Hard constraints
+// ############################################################################
+
+rule "One TimeCapsule to One Spotsnippet"
+    salience 2
+    when
+        $onecapsule : TimeCapsule()
+        $onesnippet : SpotSnippet($opid : id, timeCapsule == $onecapsule)
+        exists SpotSnippet(timeCapsule == $onecapsule, id != $opid)
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -1);
+end
+
+rule "Visit Spot Once"
+    salience 1
+    when
+        $onecapsule : TimeCapsule($ocid : id)
+        $day : Day(timeCapsules contains $onecapsule)
+        $spot : Spot()
+        $onesnippet : SpotSnippet(  spot == $spot,
+                                    timeCapsule == $onecapsule,
+                                    $lpid : id)
+        $othercapsule : TimeCapsule($hcid: id != $ocid, $rpid : id)
+        SpotSnippet(spot == $spot, timeCapsule == $othercapsule, id != $lpid)
+    then
+        int capsulenum = $spot.getRequiredTimeCapsuleNum($day);
+        if (Math.abs($lpid - $rpid) > capsulenum - 1) {
+            scoreHolder.addHardConstraintMatch(kcontext, -1);
+        } else {
+            scoreHolder.addSoftConstraintMatch(kcontext, 0);
+        }
+end
+
+rule "Reserve Gourmet Spots Exclusive to Meal Time"
+    when
+        $spot : Spot($gourmet : gourmet)
+        $timecapsule : TimeCapsule($cid : id)
+        $day : Day(timeCapsules contains $timecapsule)
+        SpotSnippet(spot == $spot,  timeCapsule == $timecapsule)
+    then
+        System.out.println("This Spot is " + $gourmet + " Gourmet Spot");
+        if ( $day.notMealTime($cid) == $gourmet ) {
+            scoreHolder.addHardConstraintMatch(kcontext, -1);
+        } else {
+            scoreHolder.addSoftConstraintMatch(kcontext, 0);
+        }
+end
+
+rule "Reserve Travel Time Between Spots"
+    salience 2
+    when
+        $leftcapsule : TimeCapsule($leftcapsuleId : id)
+        $day : Day(timeCapsules contains $leftcapsule)
+        $leftspot : Spot($sid : id)
+        $rightspot : Spot(id != $sid)
+        $leftsnippet : SpotSnippet( spot == $leftspot,
+                                    timeCapsule == $leftcapsule)
+        $othercapsule : TimeCapsule(id != $leftcapsuleId)
+        exists SpotSnippet( spot == $rightspot, snippetIndexInSpot == 0, timeCapsule == $othercapsule)
+    then
+        double travelcapsulenum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
+        int capsulenum = $rightspot.getRequiredTimeCapsuleNum($day);
+        if ($leftsnippet.getSnippetIndexInSpot() == capsulenum - 1 && $othercapsule.getId() - $leftcapsuleId < travelcapsulenum) {
+            scoreHolder.addHardConstraintMatch(kcontext, -1);
+        } else {
+            scoreHolder.addSoftConstraintMatch(kcontext, 0);
+        }
+
+end
+
+rule "No Exceed Time of Spot"
+    salience 1
+    when
+        $day : Day($timecapsules : timeCapsules)
+        $totalScheduledCaps : Number() from accumulate (
+            SpotSnippet(timeCapsule != null, $capsuleCost : getScore(), $timecapsules contains timeCapsule),
+            sum($capsuleCost)
+        )
+    then
+        int timeCapsuleTotNum = $day.getRelativeTimeCapsuleIndex($day.getEnd_time());
+        scoreHolder.addHardConstraintMatch(kcontext, timeCapsuleTotNum - $totalScheduledCaps.intValue());
+end
+
+rule "Visit Within Time Window of Spot"
+    when
+        $capsule : TimeCapsule($cid : id)
+        $day : Day(timeCapsules contains $capsule)
+        $spot : Spot()
+        SpotSnippet(spot == $spot, timeCapsule == $capsule, $snippetIndexInSpot : snippetIndexInSpot)
+    then
+        int opencapId = $spot.getOpenTimeCapId($day);
+        int closecapId = $spot.getCloseTimeCapId($day);
+        int requriedcapnum = $spot.getRequiredTimeCapsuleNum($day);
+        if (($snippetIndexInSpot == 0 && $cid < opencapId)||($snippetIndexInSpot == (requriedcapnum - 1) && $cid > closecapId)) {
+            System.out.println($cid);
+            scoreHolder.addHardConstraintMatch(kcontext, -1);
+        } else {
+            scoreHolder.addSoftConstraintMatch(kcontext, 0);
+        }
+end
+
+rule "Schedule Spot to its Fullest"
+    when
+        $day : Day()
+        $spot : Spot($id : id)
+        $totalCapsuleNumOfSpot : Number() from accumulate (
+            SpotSnippet(spot == $spot,
+                        timeCapsule : timeCapsule != null,
+                        $score : score,
+                        $day.getTimeCapsules() contains timeCapsule),
+            sum($score)
+        )
+    then
+        int requiredTimeCapsuleNum = $spot.getRequiredTimeCapsuleNum($day);
+        scoreHolder.addSoftConstraintMatch(kcontext, $totalCapsuleNumOfSpot.intValue() - requiredTimeCapsuleNum);
+end
+
+// ############################################################################
+// Soft constraints
+// ############################################################################
+
+rule "Minimize Travel Time"
+    when
+        $leftcapsule : TimeCapsule($lcid : id)
+        $rightcapsule : TimeCapsule($rcid : id != $lcid)
+        $day : Day(timeCapsules contains $leftcapsule, timeCapsules contains $rightcapsule)
+        $leftspot : Spot($lsid : id)
+        $leftsnippet : SpotSnippet(spot == $leftspot, timeCapsule == $leftcapsule, $snippetIndexInSpot : snippetIndexInSpot)
+        $rightspot : Spot(id != $lsid)
+        exists SpotSnippet(spot == $rightspot, timeCapsule == $rightcapsule, snippetIndexInSpot == 0)
+    then
+        int capsulenum = $leftspot.getRequiredTimeCapsuleNum($day);
+        int travelcapNum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
+        if ($snippetIndexInSpot == (capsulenum - 1)) {
+            scoreHolder.addSoftConstraintMatch(kcontext,  - travelcapNum);
+        }
+        System.out.println("Travel caps between " + $lsid + " and " + $rightspot.id + " = " + travelcapNum);
+end
+
+rule "Minimize unmatched SpotSnippet"
+    when
+        $totalUnmatchedSpotScore : Number() from accumulate (
+            SpotSnippet($spotScore : getScore(), timeCapsule == null),
+            sum($spotScore)
+        )
+    then
+        System.out.println("Total unmatched Spot Snippets: " + $totalUnmatchedSpotScore);
+        scoreHolder.addSoftConstraintMatch(kcontext, - $totalUnmatchedSpotScore.intValue());
+end

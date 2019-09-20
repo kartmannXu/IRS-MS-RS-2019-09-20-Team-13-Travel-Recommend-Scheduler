@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetFamily"
+    dialect "mvel"
+	ruleflow-group "SetFamily"
+	when
+		userAnsHolder : UserAnswers( ans : qnsKidElder )
+	then
+		userAnsHolder.setFamily( ans );
+end

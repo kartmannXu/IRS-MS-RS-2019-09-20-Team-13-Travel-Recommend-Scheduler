@@ -1,0 +1,67 @@
+<app-messages></app-messages>
+
+<!-- <div>
+		<nz-card nzHoverable style="width:500px"
+			[nzCover]="coverTemplate"
+			[nzActions]="[actionSetting, actionEdit, actionEllipsis]"
+			(click)="clickCard()">
+				<nz-card-meta nzTitle="SilverAsh" 
+				nzDescription="zhennanrenzhan" 
+				[nzAvatar]="avatarTemplate"
+				></nz-card-meta>
+		</nz-card>
+		<ng-template #coverTemplate>
+			<img alt="example" src="../../assets/img/silverash.png" />
+		</ng-template>
+		<ng-template #actionSetting>
+
+		</ng-template>
+		<ng-template #actionEdit>
+
+		</ng-template>
+		<ng-template #actionEllipsis>
+			<i nz-icon nzType="delete" nzTheme="outline"></i>
+		</ng-template>
+</div>
+ -->
+<div *ngFor="let interet of interest_list">
+		<nz-card nzHoverable style="width:500px"
+			[nzCover]="coverTemplate"
+			[nzActions]="[actionSetting, actionEdit, actionEllipsis]"
+			(click)="clickCard(interet)">
+				<nz-card-meta [nzTitle]="interet.spot_name" 
+				[nzDescription]="interet.spot_name" 
+				[nzAvatar]="avatarTemplate"
+				></nz-card-meta>
+		</nz-card>
+		<ng-template #coverTemplate>
+			<img alt="example" src="interet.imageUrl" />
+		</ng-template>
+		<ng-template #actionSetting>
+
+		</ng-template>
+		<ng-template #actionEdit>
+
+		</ng-template>
+		<ng-template #actionEllipsis>
+			<i nz-icon nzType="delete" nzTheme="outline"></i>
+		</ng-template>
+</div>
+
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+>
+
+  <ng-template #modalContent>
+    <app-introduction [Interests] = "interest_now"></app-introduction>
+  </ng-template>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
+  </ng-template>
+</nz-modal>

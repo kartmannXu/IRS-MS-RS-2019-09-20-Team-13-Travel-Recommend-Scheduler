@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="053ff730-2c44-43be-bfc6-b1176e8c2c61" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../travel-recommender-schedule" beforeDir="false" afterPath="$PROJECT_DIR$/../travel-recommender-schedule" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_model/src/main/java/com/travel_recommender/model/UserAnswers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_model/src/main/java/com/travel_recommender/model/UserAnswers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/Spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/service/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/service/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceRule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceRule.drl" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1QVxa6qEv3Ga5N8UbPQDbe7keOc" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/travel_recommender/service/recommenderSolver" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.travel_recommender.service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\share_folder\travelRecommender\travel_recommender_service\src\main\java\com\travel_recommender\service\recommenderSolver" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.travel_recommender.service.swagger" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\share_folder\travelRecommender\travel-recommender-schedule\src\main\resources" />
+      <recent name="D:\share_folder\travelRecommender\travel_recommender_service\src\main\java\com\travel_recommender\model" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="travel_recommender_service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.travel_recommender.service.application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="053ff730-2c44-43be-bfc6-b1176e8c2c61" name="Default Changelist" comment="" />
+      <created>1567869627741</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567869627741</updated>
+      <workItem from="1567869640231" duration="305000" />
+      <workItem from="1567872386112" duration="20882000" />
+      <workItem from="1567936911349" duration="1207000" />
+      <workItem from="1567986135839" duration="20448000" />
+      <workItem from="1568084952444" duration="20135000" />
+      <workItem from="1568451590268" duration="600000" />
+      <workItem from="1568457847052" duration="2806000" />
+      <workItem from="1568460687445" duration="24107000" />
+      <workItem from="1568619042833" duration="4242000" />
+      <workItem from="1568625003178" duration="2596000" />
+      <workItem from="1568740542186" duration="1933000" />
+      <workItem from="1568778633299" duration="52018000" />
+      <workItem from="1568879119751" duration="14401000" />
+      <workItem from="1568895693208" duration="2270000" />
+      <workItem from="1568900120790" duration="24838000" />
+      <workItem from="1568947223059" duration="6445000" />
+      <workItem from="1568954045645" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

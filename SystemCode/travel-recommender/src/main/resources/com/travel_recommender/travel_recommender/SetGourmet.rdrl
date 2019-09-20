@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetGourmet"
+	dialect "mvel"
+	ruleflow-group "SetGourmet"
+	when
+		userAnsHolder : UserAnswers( ans : qnsFoodExpectation )
+	then
+		userAnsHolder.setGourmet( ans );
+end

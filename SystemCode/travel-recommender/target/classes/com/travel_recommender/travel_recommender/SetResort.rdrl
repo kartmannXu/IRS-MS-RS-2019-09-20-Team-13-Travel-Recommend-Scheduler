@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetResort"
+    dialect "mvel"
+	ruleflow-group "SetResort"
+	when
+		userAnsHolder : UserAnswers( bustle == false || downtown == false )
+	then
+		userAnsHolder.setResort( true );
+end

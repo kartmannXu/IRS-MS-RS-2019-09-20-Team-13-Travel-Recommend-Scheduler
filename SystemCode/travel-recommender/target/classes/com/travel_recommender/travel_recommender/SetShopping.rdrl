@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetShopping"
+	dialect "mvel"
+	ruleflow-group "SetShopping"
+	when
+		userAnsHolder : UserAnswers( ans : qnsSouveniers )
+	then
+		userAnsHolder.setShopping( ans );
+end

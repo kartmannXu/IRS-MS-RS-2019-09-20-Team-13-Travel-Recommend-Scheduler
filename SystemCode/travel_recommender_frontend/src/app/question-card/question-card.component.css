@@ -1,0 +1,40 @@
+
+      :host {
+        text-align: left;
+        justify-content: space-between;
+      }
+
+      nz-header,
+      nz-footer {
+        background: #e6f0ff;
+        color: #000000;
+        justify-content: space-between;
+      }
+
+      nz-footer {
+        line-height: 1.5;
+      }
+
+      nz-sider {
+        background: #3ba0e9;
+        color: #000000;
+        line-height: 120px;
+        justify-content: space-between;
+      }
+
+      nz-content {
+        background: #ffffff;
+        color: #000000;
+        min-height: 40px;
+        line-height: 60px;
+        justify-content: space-between;
+      }
+
+      nz-layout {
+        margin-bottom: 48px;
+        justify-content: space-between;
+      }
+
+      nz-layout:last-child {
+        margin: 0;
+      }

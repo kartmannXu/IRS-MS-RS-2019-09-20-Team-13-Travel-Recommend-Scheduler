@@ -1,0 +1,13 @@
+package com.travel_recommender.travel_recommender;
+
+import java.lang.Number;
+import com.travel_recommender.model.UserAnswers;
+
+rule "SetCultural"
+	dialect "mvel"
+	ruleflow-group "SetCultural"
+	when
+		userAnsHolder : UserAnswers( ans : qnsCultural )
+	then
+		userAnsHolder.setCultural( ans );
+end
