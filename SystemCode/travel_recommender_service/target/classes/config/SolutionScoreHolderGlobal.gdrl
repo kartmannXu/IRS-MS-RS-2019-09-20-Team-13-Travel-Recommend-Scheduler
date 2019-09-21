@@ -1,3 +1,0 @@
-package com.travel_recommender.opta;
-
-global org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder scoreHolder;
