@@ -153,7 +153,7 @@ export class ThirdPageComponent implements OnInit {
 					nDay = this.spotSnippetViewModel_list[i].day;
 					endtrigger = -1;
 				}
-				else if((spot_id != this.spotSnippetViewModel_list[i].spotId || i == this.spotSnippetViewModel_list.length -1) && endtrigger == -1){
+				if((spot_id != this.spotSnippetViewModel_list[i].spotId || i == this.spotSnippetViewModel_list.length -1) && endtrigger == -1){
 					if (i != this.spotSnippetViewModel_list.length -1) {
 						i -= 1;
 					}
@@ -180,8 +180,9 @@ export class ThirdPageComponent implements OnInit {
 					endtrigger = 1;
 					mincapusule = 50;
 					maxcapusule = 0;
+					continue;
 				}
-				else{
+				// else{
 					if(mincapusule>this.spotSnippetViewModel_list[i].timeCapsuleId){
 						mincapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
 					}
@@ -191,7 +192,7 @@ export class ThirdPageComponent implements OnInit {
 					if(nDay<this.spotSnippetViewModel_list[i].day){
 						nDay = this.spotSnippetViewModel_list[i].day;
 					}
-				}
+				// }
 
 			}
 
