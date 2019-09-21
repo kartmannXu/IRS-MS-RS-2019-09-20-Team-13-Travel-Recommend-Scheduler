@@ -124,7 +124,7 @@ public class Spot {
     }
 
     public void setSpot_name(String spot_name) {
-        Spot_name = spot_name;
+        Spot_name = spot_name.replace("_", " ");
     }
 
     public String getOpen_times() {
@@ -364,7 +364,7 @@ public class Spot {
                 ", Postal=" + Postal +
                 ", lgt=" + lgt +
                 ", ltt=" + ltt +
-                ", Spot_name='" + Spot_name + '\'' +
+                ", Spot_name='" + getSpot_name() + '\'' +
                 ", Open_times='" + Open_times + '\'' +
                 ", Close_times='" + Close_times + '\'' +
                 ", Special_close_date='" + Special_close_date + '\'' +

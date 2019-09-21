@@ -2,11 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="053ff730-2c44-43be-bfc6-b1176e8c2c61" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/CapsuleCapture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/SpotConsecutiveSequence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/SpotConsecutiveStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/SpotFullyArranged.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/TimeCapsuleAlreadyAssigned.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/move/SpotSnippetMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/move/SpotSnippetMoveFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Constraints.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Constraints.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../travel-recommender-schedule" beforeDir="false" afterPath="$PROJECT_DIR$/../travel-recommender-schedule" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../travel_recommender_model/src/main/java/com/travel_recommender/model/UserAnswers.java" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_model/src/main/java/com/travel_recommender/model/UserAnswers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/Spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel-recommender/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../travel-recommender/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/first-page/first-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/introduction/introduction.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/introduction/introduction.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/introduction/introduction.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/introduction/introduction.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/model/question.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/model/question.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule-panel/schedule-panel.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule/schedule.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule/schedule.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule/schedule.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/schedule/schedule.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/second-page/second-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/second-page/second-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/second-page/second-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/second-page/second-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/third-page/third-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/top-bar/top-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/app/top-bar/top-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../travel_recommender_frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../travel_recommender_frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/first-page/first-page.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/first-page/first-page.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/first-page/first-page.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/first-page/first-page.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/introduction/introduction.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/introduction/introduction.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/introduction/introduction.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/introduction/introduction.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/messages/messages.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/messages/messages.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/messages/messages.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/messages/messages.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/ScheduleOption.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/SpotSnippetViewModel.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/UserAnswerViewModel.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/answer.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/attrictions_type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/attrictions_type_detail.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/country.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/interest_detail.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/question.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/question_attr.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/response.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/schedule.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/tag.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/model/tag_detail.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/question-card/question-card.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/question-card/question-card.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/question-card/question-card.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/question-card/question-card.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule-panel/schedule-panel.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule-panel/schedule-panel.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule-panel/schedule-panel.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule-panel/schedule-panel.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule/schedule.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule/schedule.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule/schedule.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/schedule/schedule.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/second-page/second-page.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/second-page/second-page.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/second-page/second-page.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/second-page/second-page.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/http-client.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/http-client.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/message.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/message.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/useranswer.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/service/useranswer.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/third-page/third-page.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/third-page/third-page.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/third-page/third-page.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/third-page/third-page.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/top-bar/top-bar.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/top-bar/top-bar.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/top-bar/top-bar.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/top-bar/top-bar.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/caption (1).jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/caption.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/flower-dome.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/gardens-by-the-bay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/img-20190806-120739-largejpg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/img-20190901-062012-084.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/jungle-breakfast-with.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/maxwell-road-hawker-centre.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/silverash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/model/Spot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/model/Spot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/SpotSnippet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/opta/SpotSnippet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/travel_recommender/service/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/travel_recommender/service/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceRule.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceRule.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceScoreConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config/SpotArrangeServiceScoreConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.less" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,18 +170,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.travel_recommender.service" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\share_folder\travelRecommender\travel-recommender-schedule\src\main\resources" />
+      <recent name="D:\share_folder\travelRecommender\travel_recommender_service\src\main\java\com\travel_recommender\model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\share_folder\travelRecommender\travel_recommender_service\src\main\java\com\travel_recommender\service\recommenderSolver" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.travel_recommender.opta" />
       <recent name="com.travel_recommender.service.swagger" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\share_folder\travelRecommender\travel-recommender-schedule\src\main\resources" />
-      <recent name="D:\share_folder\travelRecommender\travel_recommender_service\src\main\java\com\travel_recommender\model" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.travel_recommender.service" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -123,6 +233,9 @@
       <workItem from="1568900120790" duration="24838000" />
       <workItem from="1568947223059" duration="6445000" />
       <workItem from="1568954045645" duration="9000" />
+      <workItem from="1568970509934" duration="12770000" />
+      <workItem from="1569003365391" duration="5904000" />
+      <workItem from="1569030924722" duration="44458000" />
     </task>
     <servers />
   </component>

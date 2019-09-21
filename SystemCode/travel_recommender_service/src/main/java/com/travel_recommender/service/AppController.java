@@ -65,11 +65,10 @@ public class AppController {
     private SimpleDateFormat timefmt = new SimpleDateFormat("yyyy-mm-dd HH:mm");
     private HashMap<String, String> criticalTimes = initCriticalTimes();
     private static boolean scoreBase = true;
-    private static boolean scheduleBase = true;
     // TODO: manage resultlist indexing in recommenderSolverManager
     private Map<Comparable<?>, List<Spot>> clientIdToResultList = new HashMap<>();
     private Map<Comparable<?>, Solution> clientIdToSolution = new HashMap<>();
-
+    private Map<Comparable<?>, List<Day>> clientIdToDayList = new HashMap<>();
 
     // Optaplanner Module
     @Autowired
@@ -98,6 +97,22 @@ public class AppController {
         userAnswersHolder.setDowntown(usrAnsVM.isQnsDowntown());
         userAnswersHolder.setQnsSouveniers(usrAnsVM.isQnsSouveniers());
         userAnswersHolder.setQnsView(usrAnsVM.isQnsView());
+
+            userAnswersHolder.setGardens(true);
+            userAnswersHolder.setParks(true);
+            userAnswersHolder.setMuseums(true);
+            userAnswersHolder.setObservation_deck(true);
+            userAnswersHolder.setZoo(true);
+            userAnswersHolder.setThemeparks(true);
+            userAnswersHolder.setNeighbourhoods(true);
+            userAnswersHolder.setReligious_Sites(true);
+            userAnswersHolder.setLandmarks(true);
+            userAnswersHolder.setHistorical_Sites(true);
+            userAnswersHolder.setIsland(true);
+            userAnswersHolder.setShopping_Malls(true);
+            userAnswersHolder.setBridges(true);
+            userAnswersHolder.setBeaches(true);
+
         System.out.println(StringUtils.repeat("-", 20) + "\nParameters: " + userAnswersHolder);
 
         runRecommendProcess(userAnswersHolder);
@@ -169,7 +184,7 @@ public class AppController {
     }
 
     @GetMapping("/{clientId}/resultList")
-    public List<Spot> page3recommend(@PathVariable Comparable<?> clientId) throws ParseException {
+    public List<Spot> page3recommend(@PathVariable Comparable<?> clientId) {
         eliminateListBasedOnSchedule(clientId);
         return clientIdToResultList.get(clientId);
     }
@@ -178,8 +193,9 @@ public class AppController {
     public List<SpotSnippetViewModel> page3Schedule(@PathVariable Comparable<?> clientId) {
 
         List<SpotSnippetViewModel> spotVMs = new ArrayList<>();
-        Solution solution = solverManager.getBestSolution(clientId);
-        System.out.println(solution);
+        Solution solution = clientIdToSolution.get(clientId);
+
+        List<Day> days = clientIdToDayList.get(clientId);
         if (solution != null) {
             // convert solution to front-end feasible View Model
             for (com.travel_recommender.opta.SpotSnippet snippet : solution.getSnippetList()) {
@@ -189,15 +205,22 @@ public class AppController {
                 spotVM.setSpotName(daoSpot.getSpot_name());
 
                 // find day corresponding to the time capsule assigned to this spot snippet.
-                List<Day> days = solution.getDay_list();
-                days.removeIf(day -> day.getTimeCapsules().contains(snippet.getTimeCapsule()));
-                Day assignedDay = days.get(0);
+                // filter out infeasible solutions
+                TimeCapsule capsule = snippet.getTimeCapsule();
+                if (capsule == null) { continue; }
+                List<Day> corresDays = days.stream().filter(day -> day.getTimeCapsules().contains(capsule)).collect(Collectors.toList());
+                System.out.println("CorresDays: " + corresDays);
 
-                spotVM.setDay(assignedDay.getId().intValue());
-                spotVM.setTimeCapsuleId(assignedDay.getRelativeTimeCapsuleIndex(
-                        snippet.getSpot().getOpenTimeCapId(assignedDay)) + snippet.getSnippetIndexInSpot());
-                spotVM.setEst_duration(snippet.getSpot().getEst_duration());
+                // filter out infeasible solutions
+                if (!days.isEmpty()) {
+                    Day assignedDay = corresDays.get(0);
+                    spotVM.setDay(assignedDay.getId().intValue());
+                    spotVM.setTimeCapsuleId((int) (capsule.getId() % assignedDay.getRelativeTimeCapsuleIndex(assignedDay.getEnd_time())));
+                    spotVM.setEst_duration(snippet.getSpot().getEst_duration());
+                    spotVMs.add(spotVM);
+                }
             }
+            System.out.println("spotVMS: " + spotVMs);
         }
         return spotVMs;
     }
@@ -262,7 +285,7 @@ public class AppController {
         clientIdToResultList.put(clientId, resultList);
     }
 
-    private void eliminateListBasedOnSchedule(Comparable<?> clientId) throws ParseException {
+    private void eliminateListBasedOnSchedule(Comparable<?> clientId) {
         List<Spot> resultList = clientIdToResultList.get(clientId);
         if (resultList.isEmpty()) {
             return;
@@ -272,27 +295,30 @@ public class AppController {
         List<SpotSnippet> snippetsArranged = solution.getSnippetList();
         snippetsArranged.removeIf(spotSnippet -> spotSnippet.getTimeCapsule() == null);
 
-        List<com.travel_recommender.opta.Spot> spotsArranged = snippetsArranged.stream().map(SpotSnippet::getSpot).collect(Collectors.toList());
+        List<com.travel_recommender.opta.Spot> spotsArranged = snippetsArranged.stream()
+                .map(SpotSnippet::getSpot).collect(Collectors.toList());
         System.out.println(spotsArranged);
 
         List<Integer> resultIds = spotsArranged.stream().map(
                 com.travel_recommender.opta.Spot::getSpotId).collect(Collectors.toList());
         resultList.removeIf(spot -> !resultIds.contains(spot.getSpot_id()));
-
-        clientIdToResultList.put(processId, resultList);
-        clientIdToSolution.put(processId, solution);
+        System.out.println("resultList size reduced to " + resultList.size());
+        clientIdToResultList.put(clientId, resultList);
+        clientIdToSolution.put(clientId, solution);
     }
 
     private List<Integer> encodeTimeInWeek(String times) throws ParseException {
         List<Integer> timeList = new ArrayList<>();
-        for (String time: times.split(",")) {
-            timeList.add(DateTime2Int(userAnswersHolder.getQnsDepartureTime(), 0, time));
+        for (String timeStr: times.split(",")) {
+            timeList.add(DateTime2Int(userAnswersHolder.getQnsDepartureTime(), 0, timeStr));
         }
         return timeList;
     }
 
     private Integer DateTime2Int(int departTimeInt, long currentDate, String timeStr) throws ParseException {
+        // Prevent negative output of parsers
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        timefmt.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date date = new Date();
         date.setTime(departTimeInt + (60 * 24 * 60 * 1000) * currentDate);
         return (int) timefmt.parse(simpleDateFormat.format(date) + " " + timeStr).getTime() / (1000 * 60);       // in minute
@@ -333,7 +359,7 @@ public class AppController {
                         "Historical_Sites,Island,Shopping_Malls,Bridges,Beaches").split("\\s*(,\\s*)+")
         ).filter(s -> (boolean) UserAnswers.getObjAttr(userAnswersHolder, s)).collect(Collectors.toList());
 
-        return String.join(",", types);
+        return String.join(",", types).replace("_", " ");
     }
 
     private void solveService(Comparable<?> clientId) throws ParseException {
@@ -393,7 +419,6 @@ public class AppController {
                         snippetId,
                         j,
                         spotArrange,
-                        null,
                         null
                 );
                 snippets.add(newSnippet);
@@ -407,7 +432,7 @@ public class AppController {
                 capsules,
                 snippets
         );
-        System.out.println("problem:" + problem);
         solverManager.solve(clientId, problem);
+        clientIdToDayList.put(clientId, dayList);
     }
 }

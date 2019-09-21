@@ -37,7 +37,7 @@ public class SpotSnippet extends AbstractPersistable{
         this.spot = spot;
     }
 
-    public SpotSnippet(Long id, int snippetIndexInSpot, Spot spot, TimeCapsule timeCapsule, Day day) {
+    public SpotSnippet(Long id, int snippetIndexInSpot, Spot spot, TimeCapsule timeCapsule) {
         super(id);
         this.snippetIndexInSpot = snippetIndexInSpot;
         this.spot = spot;

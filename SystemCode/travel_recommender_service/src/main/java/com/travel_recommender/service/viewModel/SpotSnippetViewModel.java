@@ -49,4 +49,15 @@ public class SpotSnippetViewModel implements Serializable {
     public void setTimeCapsuleId(int timeCapsuleId) {
         this.timeCapsuleId = timeCapsuleId;
     }
+
+    @Override
+    public String toString() {
+        return "SpotSnippetViewModel{" +
+                "spotId=" + spotId +
+                ", est_duration=" + est_duration +
+                ", timeCapsuleId=" + timeCapsuleId +
+                ", day=" + day +
+                ", spotName='" + spotName + '\'' +
+                '}';
+    }
 }

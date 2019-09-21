@@ -5,17 +5,41 @@
 
   <solutionClass>com.travel_recommender.opta.Solution</solutionClass>
   <entityClass>com.travel_recommender.opta.SpotSnippet</entityClass>
+  <!--<entityClass>com.travel_recommender.opta.CapsuleCapture</entityClass>-->
   <scoreDirectorFactory>
     <scoreDrl>config/SpotArrangeServiceRule.drl</scoreDrl>
   </scoreDirectorFactory>
-
+  <environmentMode>FULL_ASSERT</environmentMode>
   <termination>
-    <minutesSpentLimit>1</minutesSpentLimit>
+    <minutesSpentLimit>2</minutesSpentLimit>
   </termination>
   <constructionHeuristic>
     <constructionHeuristicType>WEAKEST_FIT</constructionHeuristicType>
   </constructionHeuristic>
   <localSearch>
-    <localSearchType>LATE_ACCEPTANCE</localSearchType>
+    <!--<localSearchType>LATE_ACCEPTANCE</localSearchType> -->
+    <acceptor>
+      <entityTabuSize>7</entityTabuSize>
+    </acceptor>
+    <forager>
+      <acceptedCountLimit>800</acceptedCountLimit>
+      <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
+    </forager>
+    <unionMoveSelector>
+      <!--<moveListFactory>-->
+      <!--  <cacheType>PHASE</cacheType>-->
+      <!--  <moveListFactoryClass>com.travel_recommender.opta.move.SpotSnippetMoveFactory</moveListFactoryClass>-->
+      <!--</moveListFactory>-->
+      <swapMoveSelector>
+        <filterClass>com.travel_recommender.opta.move.SpotSnippetSwapMoveFilter</filterClass>
+      </swapMoveSelector>
+      <changeMoveSelector>
+        <selectionOrder>ORIGINAL</selectionOrder>
+      </changeMoveSelector>
+    </unionMoveSelector>
+
+    <termination>
+      <unimprovedMillisecondsSpentLimit>3000</unimprovedMillisecondsSpentLimit>
+    </termination>
   </localSearch>
 </solver>
