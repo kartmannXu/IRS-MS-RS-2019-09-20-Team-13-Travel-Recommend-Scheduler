@@ -10,6 +10,8 @@ export class UserAnswerViewModel {
 	qnsSouveniers: boolean;
 	qnsDowntown: boolean;
 	qnsView: boolean;
+	qnsNatural:boolean;
 	types: string;
+	id:number;
 }
 

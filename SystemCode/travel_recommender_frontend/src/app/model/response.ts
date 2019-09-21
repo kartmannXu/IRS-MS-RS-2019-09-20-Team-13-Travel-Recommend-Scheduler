@@ -1,6 +1,6 @@
 export class response {//怎样寻找object里的属性？
 
-	
+	qnsNatural: string;
 	qnsDepartureTime: string;
 	qnsLeavingTime: string;
 	qnsCountryId: number;

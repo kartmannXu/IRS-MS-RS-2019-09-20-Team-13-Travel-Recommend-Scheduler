@@ -1,8 +1,15 @@
 <h2>Delete the place you don't like.</h2>
-
-<app-messages></app-messages>
+<nz-spin nzSimple [nzSize]="'large'" [nzSpinning]="isSpinning">
+<!-- 	<nz-alert
+        [nzType]="'info'"
+        [nzMessage]="'Alert message title'"
+        [nzDescription]="'Further details about the context of this alert.'"
+      >
+      </nz-alert> -->
+</nz-spin>
 <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
       
+
 <div *ngFor="let type of attrictions_list" style = "display: inline-block; ">
       	<div nz-row>
       		<nz-tag nzMode="closeable" (nzAfterClose)="afterClose(type)">{{type}}</nz-tag>

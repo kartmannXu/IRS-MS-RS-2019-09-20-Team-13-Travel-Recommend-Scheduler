@@ -1,10 +1,12 @@
 //地点属性类
 export class interest_detail {
 
-  spot_id:number;
+    spot_id:number;
     country_id:number;
     city_id:number;
     postal:number;
+    lgt:number;
+    ltt:number;
     spot_name:string;
     open_times:string;
     close_times:string;
@@ -12,7 +14,7 @@ export class interest_detail {
     est_duration:number;
     score:number;
     ticket:number;
-    imageUrl:string;
+    
 
     // Coarse Spot Types
     gourmet:number;
@@ -36,10 +38,11 @@ export class interest_detail {
     island:number;
     shopping_Malls:number;
     bridges:number;
-    activities:number;
     beaches:number;
     
     // introduction text
     introduction:string;
+    Addr:string;
+    imageUrl:string;
 }
 

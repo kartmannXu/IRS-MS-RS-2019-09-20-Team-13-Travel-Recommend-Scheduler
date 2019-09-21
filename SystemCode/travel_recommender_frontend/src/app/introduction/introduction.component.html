@@ -32,8 +32,9 @@
 
 
 
-<img style="width:100%" alt="example" src="../../assets/img/silverash.png" />
+<img style="width:100%" alt="example" [src]="Interests.imageUrl" />
 <nz-descriptions
+
       [nzTitle]="Interests.spot_name"
       nzBordered
       [nzColumn]="{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }"
@@ -45,7 +46,7 @@
       	
       <nz-descriptions-item nzTitle="opening time">{{Interests.open_times}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Closing time">{{Interests.close_times}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="position">{{Interests.postal}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="position">{{Interests.Addr}}{{Interests.postal}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Ticket Price">${{Interests.ticket}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="Ranking">{{Interests.score}}</nz-descriptions-item>
       <nz-descriptions-item nzTitle="About">

@@ -2,62 +2,58 @@
 <!-- 最上，滚动条，下方问题栏，最后致谢
 滚动card? -->
 
-<app-messages></app-messages>
+<!-- <app-messages></app-messages> -->
 <!-- 逐个显示问题 -->
-
-<div  *ngFor="let question of questions" style = "justify-content: space-between;">
-      	<div nz-row>
-      		<app-question-card  [questions]="question" (dataChange)="onDataChange($event)" [hidden] = "question.hidden"></app-question-card>
-        </div>
-</div>
-
-<div >
-	<button  nz-button nzType="default" [hidden] = "next_hidden" (click) = "nextpage()">Next</button>
-</div>
+			<div class = "StartPic">
+		    	<img class = "StartPic" [hidden] = "pichide" src = "../../assets/img/page_start.png"  alt="example" (click) = "startQuestion()"/>
+		    </div>
 
 
-<!-- 
-<nz-steps [nzCurrent]="current">
-  <nz-step nzTitle="Start"></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>quesion.hidden
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-  <nz-step nzTitle=""></nz-step>
-</nz-steps>
-
-
-	<div *ngIf="current === 0">Welcome to Travel Recommander, to begin your trip, Can I ask your some Question?
-	</div>
-	<div *ngIf="current >0"><app-question-card  [questions]="question_now"></app-question-card>
-	</div>
-	<div class="steps-action">
-		  <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
-		    <span>Previous</span>
-		  </button>
-		  <button nz-button nzType="default" (click)="next()" *ngIf="current ===0">
-		    <span>Start!</span>
-		  </button>
-		  <button nz-button nzType="default" (click)="next()" *ngIf="current < 10&&current !== 0">
-		    <span>Next</span>
-		  </button>
-		  <button nz-button nzType="primary" (click)="done()" *ngIf="current === 10">
-		    <span>Done</span>
-		  </button>
-	</div>
-
-
- -->
+<nz-layout [hidden] = "!pichide" >
+<!-- 	<nz-layout>
+		<nz-sider [nzWidth] = 200 [nzTheme] = "light">
+		</nz-sider>
+		<nz-content>
+					<nz-carousel nzAutoPlay>
+		      <div nz-carousel-content *ngFor="let index of array">
+		        <img class = "carouselPic" alt="example" [src]="index" />
+		      </div>
+		    </nz-carousel>
+		    
+		</nz-content>
+		<nz-sider [nzWidth] = 200 [nzTheme] = "light">
+		</nz-sider>
+	</nz-layout> -->
+	<nz-layout >
+		<nz-sider [nzWidth] = 200 [nzTheme] = "light" >
+		</nz-sider>
+		<nz-content>
 
 
 
-<!-- <div class = "BFbutton">
-      <button nz-button nzType="primary"
-      
-       (click)="nextpage()">Forward
-      	<i nz-icon nzType="right"></i></button>
- </div> -->
+		<div  *ngFor="let question of questions" style = "justify-content: space-between;" #scrollMe>
+		      	<div nz-row>
+		      		<app-question-card  [questions]="question" (dataChange)="onDataChange($event)" [hidden] = "question.hidden"></app-question-card>
+		        </div>
+		</div>
+		
+		<div >
+			<button  nz-button nzType="default" [hidden] = "next_hidden" (click) = "nextpage()">Next</button>
+		</div>
+		</nz-content>
+		<nz-sider [nzWidth] = 200 [nzTheme] = "light">
+		</nz-sider>
+	</nz-layout>
+<!-- 	<nz-footer>
+	</nz-footer> -->
+
+</nz-layout>
+<nz-layout>
+	<nz-footer class = "info">
+		<br>
+		<br>
+		M.Tech (IS) course group project as part of Reasoning Systems course<br>
+		Data Source:https://www.tripadvisor.com.sg/Home-g294265    https://en.wikipedia.org/wiki/Wiki  
+	</nz-footer>
+
+</nz-layout>

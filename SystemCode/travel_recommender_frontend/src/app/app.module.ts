@@ -24,7 +24,12 @@ import { ThirdPageComponent } from './third-page/third-page.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
 import { MessagesComponent } from './messages/messages.component';
 import { IntroductionComponent } from './introduction/introduction.component';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { SchedulePanelComponent } from './schedule-panel/schedule-panel.component';
 // import { QuestioncardComponent } from './questioncard/questioncard.component';
+
+//reguster schedule model
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 registerLocaleData(en);
 
@@ -40,6 +45,8 @@ registerLocaleData(en);
     QuestionCardComponent,
     MessagesComponent,
     IntroductionComponent,
+    ScheduleComponent,
+    SchedulePanelComponent,
     // QuestioncardComponent
   ],
   imports: [
@@ -51,6 +58,7 @@ registerLocaleData(en);
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ScheduleModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

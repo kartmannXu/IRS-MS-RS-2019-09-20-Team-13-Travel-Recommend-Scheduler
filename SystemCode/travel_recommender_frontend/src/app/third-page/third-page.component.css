@@ -1,0 +1,40 @@
+/*wait for edit*/
+
+
+      nz-header,
+      nz-footer {
+        color: #000000;
+        justify-content: space-between;
+      }
+
+      nz-footer {
+        line-height: 1.5;
+      }
+
+      nz-sider {
+      	width: 200%;
+        color: #000000;
+        
+        justify-content: space-between;
+      }
+
+      nz-content {
+        background: #ffffff;
+        color: #000000;
+        min-height: 40px;
+        line-height: 60px;
+        justify-content: space-between;
+      }
+      h2.h2Schedule {
+        color: white;
+        font-size: 50px;
+      }
+      nz-alert{
+        width: 700px;
+        height: 700px;
+        font-size: 30px;
+      }
+      div.intest_detial{
+        overflow:scroll;
+        height : 800px;
+      }

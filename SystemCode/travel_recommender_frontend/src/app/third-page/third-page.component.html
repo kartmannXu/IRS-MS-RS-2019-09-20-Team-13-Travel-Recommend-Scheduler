@@ -1,7 +1,24 @@
-<app-messages></app-messages>
+<!-- <app-messages></app-messages> -->
 
-<!-- <div>
-		<nz-card nzHoverable style="width:500px"
+<nz-spin [nzSpinning]=1 [hidden] = '!loadingFlag' [nzSize] = "large">
+      <nz-alert
+        [nzType]="'info'"
+        [nzMessage]="'Please Wait For Calculate'"
+        [nzDescription]="'It maybe cost a few minutes.'"
+      >
+      </nz-alert>
+    </nz-spin>
+
+
+<!-- <div  *ngif = "loadingFlag"> -->
+
+ <nz-layout [hidden] = 'loadingFlag'>
+      <nz-header><h2 class = "h2Schedule">Schedule</h2>></nz-header>
+      <nz-layout heigtht = 700px>
+        <nz-sider [nzWidth] = 300 overflow:scroll>
+
+<!-- 		<div>
+		<nz-card nzHoverable style="width:300px"
 			[nzCover]="coverTemplate"
 			[nzActions]="[actionSetting, actionEdit, actionEllipsis]"
 			(click)="clickCard()">
@@ -13,55 +30,63 @@
 		<ng-template #coverTemplate>
 			<img alt="example" src="../../assets/img/silverash.png" />
 		</ng-template>
-		<ng-template #actionSetting>
+		</div> -->
 
-		</ng-template>
-		<ng-template #actionEdit>
+		<!-- [nzDescription]="interet.spot_name"  -->
+		<div class = "intest_detial" >
+			<div *ngFor="let interet of interest_list" >
+					<nz-card nzHoverable style="width:300px"
+						[nzCover]="coverTemplate"
+						[nzActions]="[actionSetting, actionEdit, actionEllipsis]"
+						(click)="clickCard(interet)">
+							<nz-card-meta [nzTitle]="interet.spot_name" 
+							[nzAvatar]="avatarTemplate"
+							></nz-card-meta>
+					</nz-card>
+					<ng-template #coverTemplate>
+						<img alt="example" [src]="interet.imageUrl" />
+					</ng-template>
+					<ng-template #actionSetting>
 
-		</ng-template>
-		<ng-template #actionEllipsis>
-			<i nz-icon nzType="delete" nzTheme="outline"></i>
-		</ng-template>
-</div>
- -->
-<div *ngFor="let interet of interest_list">
-		<nz-card nzHoverable style="width:500px"
-			[nzCover]="coverTemplate"
-			[nzActions]="[actionSetting, actionEdit, actionEllipsis]"
-			(click)="clickCard(interet)">
-				<nz-card-meta [nzTitle]="interet.spot_name" 
-				[nzDescription]="interet.spot_name" 
-				[nzAvatar]="avatarTemplate"
-				></nz-card-meta>
-		</nz-card>
-		<ng-template #coverTemplate>
-			<img alt="example" src="interet.imageUrl" />
-		</ng-template>
-		<ng-template #actionSetting>
+					</ng-template>
+					<ng-template #actionEdit>
 
-		</ng-template>
-		<ng-template #actionEdit>
-
-		</ng-template>
-		<ng-template #actionEllipsis>
-			<i nz-icon nzType="delete" nzTheme="outline"></i>
-		</ng-template>
-</div>
+					</ng-template>
+			</div>
+		</div>
 
 
-<nz-modal
-  [(nzVisible)]="isVisible"
-  [nzTitle]="modalTitle"
-  [nzContent]="modalContent"
-  [nzFooter]="modalFooter"
-  (nzOnCancel)="handleCancel()"
->
 
-  <ng-template #modalContent>
-    <app-introduction [Interests] = "interest_now"></app-introduction>
-  </ng-template>
 
-  <ng-template #modalFooter>
-    <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
-  </ng-template>
-</nz-modal>
+
+
+
+        </nz-sider>
+        <!-- <nz-content> --><app-schedule-panel [schedule_list]="schedule_list" [scheduleOption] = "scheduleOption"></app-schedule-panel><!-- </nz-content> -->
+      </nz-layout>
+    </nz-layout>
+
+    		<nz-modal
+		  [(nzVisible)]="isVisible"
+		  [nzTitle]="modalTitle"
+		  [nzContent]="modalContent"
+		  [nzFooter]="modalFooter"
+		  (nzOnCancel)="handleCancel()"
+		  [nzWidth] = 1300 
+		>
+
+		  <ng-template #modalContent>
+		    <app-introduction  [Interests] = "interest_now"></app-introduction>
+		  </ng-template>
+
+		  <ng-template #modalFooter>
+		    <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
+		  </ng-template>
+		</nz-modal>
+<!-- 
+</div> -->
+
+
+
+
+

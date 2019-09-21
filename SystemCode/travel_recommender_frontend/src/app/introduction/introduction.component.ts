@@ -12,6 +12,10 @@ export class IntroductionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  	this.Interests.introduction.replace("/n<br>","");
+  	this.Interests.introduction.replace("[1]","");
+  	this.Interests.introduction.replace("[2]","");
+  	this.Interests.introduction.replace("[3]","");
   }
 
 }
