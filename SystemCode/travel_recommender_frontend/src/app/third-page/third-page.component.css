@@ -38,3 +38,9 @@
         overflow:scroll;
         height :750px;
       }
+
+      i.shareIcon{
+        position:absolute;
+        right:0;
+        float:right;
+      }

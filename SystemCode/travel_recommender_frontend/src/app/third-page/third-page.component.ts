@@ -82,12 +82,10 @@ export class ThirdPageComponent implements OnInit {
 
 		async getAllData() {
 			const first = await this.getRecommendation(this.response_now);
-			console.log(first);
 			var n:number = 10;
 			while(n>0)
 			{
 				n--;
-				console.log("开始等待");
 				await this.delay(20000);
 				const second = await this.getStatus(this.response_now.id);
 				console.log(second);
@@ -100,14 +98,20 @@ export class ThirdPageComponent implements OnInit {
 			{
 				const fourth = await this.getResultList(this.response_now.id);
 				this.interest_list = fourth as interest_detail[];
-				
+				this.spotListDealFunc();
+
+
+
+
 				console.log(fourth);
 				const fifth = await this.getScheduleList(this.response_now.id);
 				this.spotSnippetViewModel_list = fifth as SpotSnippetViewModel[];
+
+
 				console.log(fifth);
 			}
 			await this.FuncForinterest_now();
-			console.log("开始填写spot");
+
 			await this.initscheduledatacombine();
 			this.loadingFlag = 0;
 		}
@@ -118,22 +122,59 @@ export class ThirdPageComponent implements OnInit {
 			
 		}
 
+		spotListDealFunc(){
+
+			for(var nSpotIndex = 0;nSpotIndex<this.interest_list.length;nSpotIndex++){
+				this.interest_list[nSpotIndex].introduction.replace("/n","");
+				this.interest_list[nSpotIndex].introduction.replace("<br>","");
+				this.interest_list[nSpotIndex].introduction.replace("[1]","");
+				this.interest_list[nSpotIndex].introduction.replace("[2]","");
+				this.interest_list[nSpotIndex].introduction.replace("[3]","");
+				this.interest_list[nSpotIndex].introduction.replace("[4]","");
+				this.interest_list[nSpotIndex].introduction.replace("[5]","");
+				this.interest_list[nSpotIndex].addr = this.interest_list[nSpotIndex].addr +" " +this.interest_list[nSpotIndex].postal.toString();
+			}
+		}
+
+   //计算天数差的函数，通用  
+	   DateDiff(sDate1:string,  sDate2:string):number{    //sDate1和sDate2是xxxx-xx-xx格式  
+		   var  aDate,  oDate1,  oDate2,  iDays  
+		   aDate  =  sDate1.split("-")  
+		   oDate1  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])    //转换为xx-xx-xxxx格式  
+		   aDate  =  sDate2.split("-")  
+		   oDate2  =  new  Date(aDate[1]  +  '-'  +  aDate[2]  +  '-'  +  aDate[0])  
+		   var days :number =  oDate1 .getTime() -  oDate2 .getTime();//日期相差毫秒数
+			var time = Math.floor(days / (1000 * 60 * 60 * 24));//毫秒数转天数
+		   return  time
+	   }  
+
 		initscheduledatacombine(){
+
 			var begin_list:string[] = this.response_now.qnsDepartureTime.split("-");
 			var begin_year:number = +begin_list[0]>-1?+begin_list[0]:2019;
 			var begin_month:number = +begin_list[1]>0?+begin_list[1]-1:0;
 			var begin_day:number = +begin_list[2]>-1?+begin_list[2]:1;
-			console.log(begin_day)
+
 			var end_list:string[] = this.response_now.qnsLeavingTime.split("-");
 			var end_year:number = +end_list[0]>-1?+end_list[0]:2019;
 			var end_month:number = +end_list[1]>0?+end_list[1]-1:0;
 			var end_day:number = +end_list[2]>-1?+end_list[2]:1;
+
+
+			var diffDay:number = this.DateDiff(this.response_now.qnsLeavingTime,this.response_now.qnsDepartureTime);
+
 			//map the spotSnippetViewModel_list
 			var scheduleListinFunc : schedule[] = [];
 			//dont know how to init the object
 
-
-
+			//build a list for day all 0
+			var dayarray = new Array(); //先声明一维 
+			for ( var i = 0; i < diffDay; i++) { //一维长度为day
+				dayarray[i] = new Array(); //再声明二维 
+				for ( var j = 0; j < 28; j++) { //二维长度为28
+					dayarray[i][j] = 0; // 赋值
+				}
+			}
 
 			//you know what
 			var n : number = 0;//counting
@@ -162,32 +203,133 @@ export class ThirdPageComponent implements OnInit {
 						}
 					}
 
-					var schedule_temp:schedule = {	Id: 2,
+					var schedule_temp:schedule = {  Id: 2,
 					Subject: "ChinaTown",
 					StartTime: new Date(2019,8,6,9,30),
 					EndTime: new Date(2019,8,6,12,30)
 					};
 					schedule_temp.Id = n;
 					schedule_temp.Subject = this.spotSnippetViewModel_list[i].spotName;
+
+					//占点为止
+					var begin_point = 0;
+					var end_point = 0;
+					//if Time wrong delete it
+					if(Math.floor((maxcapusule - this.spotSnippetViewModel_list[i].est_duration/calculateduration)/2)<0){
+					// 	schedule_temp.StartTime = new Date(begin_year, begin_month,
+					// 	begin_day+nDay,
+					// 	8 + Math.floor((mincapusule)/2), (mincapusule)%2*calculateduration
+					// 	);
+					
+					// schedule_temp.EndTime = new Date(begin_year, +begin_month,
+					// 	begin_day+nDay,
+					// 	8 + Math.floor((mincapusule + this.spotSnippetViewModel_list[i].est_duration/calculateduration)/2),
+					// 	(mincapusule + this.spotSnippetViewModel_list[i].est_duration/calculateduration)%2*calculateduration
+					// 	);
+					begin_point = mincapusule;
+					end_point = mincapusule + this.spotSnippetViewModel_list[i].est_duration/calculateduration;
+					}
+					else{
+					// 	schedule_temp.StartTime = new Date(begin_year, begin_month,
+					// 	begin_day+nDay,
+					// 	8 + Math.floor((maxcapusule - this.spotSnippetViewModel_list[i].est_duration/calculateduration)/2), (maxcapusule - this.spotSnippetViewModel_list[i].est_duration/calculateduration)%2*calculateduration
+					// 	);
+					
+					// schedule_temp.EndTime = new Date(begin_year, +begin_month,
+					// 	begin_day+nDay,
+					// 	8 + Math.floor((maxcapusule)/2),
+					// 	(maxcapusule)%2*calculateduration
+					// 	);
+
+					end_point = maxcapusule;
+					begin_point = maxcapusule - this.spotSnippetViewModel_list[i].est_duration/calculateduration;
+					}
+
+					//这素你从未见过的全新逻辑
+					//首先判断下该景点及景点之后一小时有没有被占用
+					let wrongFlag = 0;
+					for(let nIndex = begin_point;nIndex<end_point+1;nIndex++){
+						
+						if(dayarray[nDay][nIndex] == 0){
+							continue;
+						}
+						else{
+							wrongFlag = 1;
+						}
+					}
+
+					if(wrongFlag == 0){
+						for(let nIndex = begin_point;nIndex<end_point+1;nIndex++){
+							dayarray[nDay][nIndex] = 1;
+						}
+					}else{
+						var anotherWrongFlag = 0;
+						var newPosition = 0;
+						//看看四天里相同位置有没有空缺
+						for(let dayIndex = 0;dayIndex<diffDay;dayIndex++){
+							for(let nIndex = begin_point;nIndex<end_point+1;nIndex++){
+								if(dayarray[dayIndex][nIndex] == 0){
+									continue;
+								}
+								else{
+									anotherWrongFlag = 1;
+								}
+							}
+
+							if(anotherWrongFlag == 0){
+								//说明有空缺
+								for(let nIndex = begin_point;nIndex<end_point+1;nIndex++){
+									dayarray[dayIndex][nIndex] = 1;
+								}
+								nDay = dayIndex;
+								newPosition = 1;
+								break
+							}
+							anotherWrongFlag = 0;
+						}
+
+						if(newPosition == 0){
+							//说明没有新位置，删
+							for(var spotListIndex = 0; spotListIndex<this.interest_list.length;spotListIndex++){
+								if(this.interest_list[spotListIndex].spot_id = spot_id){
+									this.interest_list.splice(spotListIndex,1);
+									break;
+								}
+							}
+							continue;
+						}
+
+					}
+					//赋值
 					schedule_temp.StartTime = new Date(begin_year, begin_month,
 						begin_day+nDay,
-						8 + Math.floor(mincapusule/2), this.spotSnippetViewModel_list[i].est_duration%2*calculateduration
+						8 + Math.floor((begin_point)/2), (begin_point)%2*calculateduration
 						);
 					
 					schedule_temp.EndTime = new Date(begin_year, +begin_month,
 						begin_day+nDay,
-						8 + Math.floor((mincapusule+this.spotSnippetViewModel_list[i].est_duration/calculateduration)/2),
-						(mincapusule+this.spotSnippetViewModel_list[i].est_duration/calculateduration)%2*calculateduration
+						8 + Math.floor((end_point)/2),
+						(end_point)%2*calculateduration
 						);
+
 					scheduleListinFunc.push(schedule_temp);
+
+
+
 					n++;
+
+					mincapusule = 50;
+					maxcapusule = 0;
+					nDay= 0;
+
+
 				}
 
 			}
 
 			this.scheduleOption.dayDate = new Date(begin_year,begin_month,begin_day);
 			//console.log(this.scheduleOption.dayDate);
-			this.scheduleOption.dayCount = end_day-begin_day +1;
+			this.scheduleOption.dayCount = diffDay +1;
 			//console.log(this.scheduleOption.dayCount);
 			this.schedule_list = scheduleListinFunc;
 			console.log(this.schedule_list);
@@ -195,6 +337,7 @@ export class ThirdPageComponent implements OnInit {
 
 
 			}
+
 
 
 

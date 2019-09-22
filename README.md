@@ -1,10 +1,6 @@
 IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
 ===
 
-## SECTION 1 : PROJECT TITLE
----
-Travel-Recommend-Schedule-System
-
 ## SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
 
 ---
@@ -14,8 +10,8 @@ In order to solve tourists' different problems, our team has put forward a trave
 
 | Official Full Name  | Student ID (MTech Applicable)  | Work Items (Who Did What) | Email (Optional) |
 | :------------ |:---------------:| :-----| :-----|
-| Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database configurating, Spring-boot Backend developing, JBPM-Maven integration, Optaplanner Scheduler Developing, UserGuide | |
-| Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, video, Optaplanner testing and fixing | E0402060@u.nus.edu|
+| Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database Configurating, Spring-boot Backend Developing, JBPM-Maven Integration, Optaplanner Scheduler Developing, UserGuide | E0401960@u.nus.edu |
+| Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, UI Designing, Video, Testing and Fixing | E0402060@u.nus.edu |
 |  |  |  |
 
 ---
@@ -49,6 +45,6 @@ To make sure the service has the geniune output, please check the departure date
 
 ## SECTION 6 : PROJECT REPORT / PAPER
 
-`<Github File Link>` : <>
+`<Github File Link>` : <https://github.com/kartmannXu/MSRS-GP/blob/final/ProjectReport/report.pdf>
 
 ## SECTION 7 : MISCELLANEOUS

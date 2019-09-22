@@ -39,12 +39,12 @@ export class FirstPageComponent implements OnInit {
   startQuestion()
   {
     this.questions[0].hidden = 0;
+    this.questions[1].hidden = 0;
+    this.questions[2].hidden = 0;
     this.pichide = 1;
   }
 
 
-  //for carousel
-  array = ["../../assets/img/caption.jpg", "../../assets/img/jungle-breakfast-with.jpg", "../../assets/img/flower-dome.jpg", "../../assets/img/img-20190806-120739-largejpg.jpg"];
 
   ngOnInit() {
     // this.questions[0].hidden = 0;
@@ -81,7 +81,6 @@ export class FirstPageComponent implements OnInit {
               break;
             case 3:
               this.response_new[this.questions[i].field] = answerData.edit;
-              console.log(this.response_new[this.questions[i].field])
               break;
             case 4:
               this.response_new[this.questions[i].field] = 0;//临时的城市代码
