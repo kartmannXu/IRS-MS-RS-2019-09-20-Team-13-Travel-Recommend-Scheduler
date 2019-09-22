@@ -292,7 +292,6 @@ export class ThirdPageComponent implements OnInit {
 							//说明没有新位置，删
 							for(var spotListIndex = 0; spotListIndex<this.interest_list.length;spotListIndex++){
 								if(this.interest_list[spotListIndex].spot_id == spot_id){
-									console.log("name:"+this.interest_list[spotListIndex].spot_name+"Id"+this.interest_list[spotListIndex].spot_id)
 									this.interest_list.splice(spotListIndex,1);
 									break;
 								}
