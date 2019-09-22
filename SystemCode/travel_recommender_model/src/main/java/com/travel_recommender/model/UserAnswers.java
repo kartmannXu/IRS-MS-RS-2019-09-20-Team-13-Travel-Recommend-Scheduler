@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class UserAnswers implements Serializable {
 
-    private int qnsDepartureTime;   // time-date represented in minute
-    private int qnsLeavingTime;     // time-date represented in minute
+    private long qnsDepartureTime;   // time-date represented in minute
+    private long qnsLeavingTime;     // time-date represented in minute
     private int qnsCountryId;
     private boolean qnsKidElder;
 
@@ -50,19 +50,19 @@ public class UserAnswers implements Serializable {
     private boolean Bridges;
     private boolean Beaches;
 
-    public int getQnsDepartureTime() {
+    public long getQnsDepartureTime() {
         return qnsDepartureTime;
     }
 
-    public void setQnsDepartureTime(int qnsDepartureTime) {
+    public void setQnsDepartureTime(long qnsDepartureTime) {
         this.qnsDepartureTime = qnsDepartureTime;
     }
 
-    public int getQnsLeavingTime() {
+    public long getQnsLeavingTime() {
         return qnsLeavingTime;
     }
 
-    public void setQnsLeavingTime(int qnsLeavingTime) {
+    public void setQnsLeavingTime(long qnsLeavingTime) {
         this.qnsLeavingTime = qnsLeavingTime;
     }
 

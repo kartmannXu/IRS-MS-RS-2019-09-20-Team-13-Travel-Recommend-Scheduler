@@ -9,7 +9,6 @@ import com.travel_recommender.opta.SpotSnippet;
 import com.travel_recommender.opta.TimeCapsule;
 import com.travel_recommender.service.scheduleSolver.SolverManager;
 import com.travel_recommender.service.scheduleSolver.SolverStatus;
-import com.travel_recommender.service.scheduleSolver.SpotArrangeService;
 import com.travel_recommender.service.viewModel.SpotSnippetViewModel;
 import com.travel_recommender.service.viewModel.UserAnswerViewModel;
 import org.apache.commons.lang3.StringUtils;
@@ -85,9 +84,11 @@ public class AppController {
         System.out.println(StringUtils.repeat("-", 20) + "\nInitializing: " + userAnswersHolder);
 
         userAnswersHolder.setQnsCountryId(usrAnsVM.getQnsCountryId());
-        userAnswersHolder.setQnsDepartureTime((int) simpleDateFormat.parse(usrAnsVM.getQnsDepartureTime())
+        System.out.println(usrAnsVM.getQnsDepartureTime());
+        System.out.println(simpleDateFormat.parse(usrAnsVM.getQnsLeavingTime()).getTime() / (1000 * 60));
+        userAnswersHolder.setQnsDepartureTime(simpleDateFormat.parse(usrAnsVM.getQnsDepartureTime())
                 .getTime() / (1000 * 60));     //minute unit
-        userAnswersHolder.setQnsLeavingTime((int) simpleDateFormat.parse(usrAnsVM.getQnsLeavingTime())
+        userAnswersHolder.setQnsLeavingTime(simpleDateFormat.parse(usrAnsVM.getQnsLeavingTime())
                 .getTime() / (1000 * 60));
         userAnswersHolder.setQnsKidElder(usrAnsVM.isQnsKidElder());
         userAnswersHolder.setQnsCultural(usrAnsVM.isQnsCultural());
@@ -97,21 +98,20 @@ public class AppController {
         userAnswersHolder.setDowntown(usrAnsVM.isQnsDowntown());
         userAnswersHolder.setQnsSouveniers(usrAnsVM.isQnsSouveniers());
         userAnswersHolder.setQnsView(usrAnsVM.isQnsView());
-
-            userAnswersHolder.setGardens(true);
-            userAnswersHolder.setParks(true);
-            userAnswersHolder.setMuseums(true);
-            userAnswersHolder.setObservation_deck(true);
-            userAnswersHolder.setZoo(true);
-            userAnswersHolder.setThemeparks(true);
-            userAnswersHolder.setNeighbourhoods(true);
-            userAnswersHolder.setReligious_Sites(true);
-            userAnswersHolder.setLandmarks(true);
-            userAnswersHolder.setHistorical_Sites(true);
-            userAnswersHolder.setIsland(true);
-            userAnswersHolder.setShopping_Malls(true);
-            userAnswersHolder.setBridges(true);
-            userAnswersHolder.setBeaches(true);
+            //userAnswersHolder.setGardens(true);
+            //userAnswersHolder.setParks(true);
+            //userAnswersHolder.setMuseums(true);
+            //userAnswersHolder.setObservation_deck(true);
+            //userAnswersHolder.setZoo(true);
+            //userAnswersHolder.setThemeparks(true);
+            //userAnswersHolder.setNeighbourhoods(true);
+            //userAnswersHolder.setReligious_Sites(true);
+            //userAnswersHolder.setLandmarks(true);
+            //userAnswersHolder.setHistorical_Sites(true);
+            //userAnswersHolder.setIsland(true);
+            //userAnswersHolder.setShopping_Malls(true);
+            //userAnswersHolder.setBridges(true);
+            //userAnswersHolder.setBeaches(true);
 
         System.out.println(StringUtils.repeat("-", 20) + "\nParameters: " + userAnswersHolder);
 
@@ -133,7 +133,7 @@ public class AppController {
                             BindingResult bindingResult) throws ValidationException, ParseException {
 
         if (bindingResult.hasErrors()) { throw new ValidationException("Error in storing your answer"); };
-		
+
         String types = usrAnsVM.getTypes().toLowerCase();
         if (!types.contains("gardens")) { userAnswersHolder.setGardens(false); }
         if (!types.contains("parks")) { userAnswersHolder.setParks(false); }
@@ -179,7 +179,7 @@ public class AppController {
                     boolToInt(userAnswersHolder.isBeaches()))
         );
         eliminateListBasedOnBudget(clientId);
-        System.out.println(userAnswersHolder.getQnsDepartureTime() + " - " + userAnswersHolder.getQnsLeavingTime());
+        System.out.println(clientIdToResultList);
         solveService(clientId);
     }
 
@@ -202,7 +202,7 @@ public class AppController {
                 SpotSnippetViewModel spotVM = new SpotSnippetViewModel();
                 spotVM.setSpotId(snippet.getSpot().getSpotId());
                 Spot daoSpot = repo.findSpotBySpot_id(spotVM.getSpotId()).get(0);
-                spotVM.setSpotName(daoSpot.getSpot_name().replace("_", " "));
+                spotVM.setSpotName(daoSpot.getSpot_name());
 
                 // find day corresponding to the time capsule assigned to this spot snippet.
                 // filter out infeasible solutions
@@ -307,21 +307,21 @@ public class AppController {
         clientIdToSolution.put(clientId, solution);
     }
 
-    private List<Integer> encodeTimeInWeek(String times) throws ParseException {
-        List<Integer> timeList = new ArrayList<>();
+    private List<Long> encodeTimeInWeek(String times) throws ParseException {
+        List<Long> timeList = new ArrayList<>();
         for (String timeStr: times.split(",")) {
             timeList.add(DateTime2Int(userAnswersHolder.getQnsDepartureTime(), 0, timeStr));
         }
         return timeList;
     }
 
-    private Integer DateTime2Int(int departTimeInt, long currentDate, String timeStr) throws ParseException {
+    private Long DateTime2Int(long departTimeLong, long currentDate, String timeStr) throws ParseException {
         // Prevent negative output of parsers
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         timefmt.setTimeZone(TimeZone.getTimeZone("GMT"));
         Date date = new Date();
-        date.setTime(departTimeInt + (60 * 24 * 60 * 1000) * currentDate);
-        return (int) timefmt.parse(simpleDateFormat.format(date) + " " + timeStr).getTime() / (1000 * 60);       // in minute
+        date.setTime(departTimeLong + (60 * 24 * 60 * 1000) * currentDate);
+        return (long) timefmt.parse(simpleDateFormat.format(date) + " " + timeStr).getTime() / (1000 * 60);       // in minute
     }
 
     private HashMap<String, String>  initCriticalTimes() {
@@ -367,7 +367,7 @@ public class AppController {
         List<SpotSnippet> snippets = new ArrayList<>();
         List<TimeCapsule> capsules = new ArrayList<>();
 
-        int days = (userAnswersHolder.getQnsLeavingTime() - userAnswersHolder.getQnsDepartureTime()) / (60 * 24);
+        long days = (userAnswersHolder.getQnsLeavingTime() - userAnswersHolder.getQnsDepartureTime()) / (60 * 24);
         assert days > 0;
         List<Day> dayList = new ArrayList<>();
         long capsuleId = 0L;

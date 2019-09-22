@@ -13,8 +13,8 @@ public class Spot extends AbstractPersistable {
 	private boolean gourmet;
 	private double xLongitude;
 	private double yLatitude;
-	private List<Integer> openTimes;
-	private List<Integer> closeTimes;
+	private List<Long> openTimes;
+	private List<Long> closeTimes;
 	private float score;
 
 	public int getTravelRequiredTimeCapNum(Spot other, Day day) {
@@ -72,19 +72,19 @@ public class Spot extends AbstractPersistable {
 		this.yLatitude = yLatitude;
 	}
 
-	public List<Integer> getOpenTimes() {
+	public List<Long> getOpenTimes() {
 		return openTimes;
 	}
 
-	public void setOpenTimes(List<Integer> openTimes) {
+	public void setOpenTimes(List<Long> openTimes) {
 		this.openTimes = openTimes;
 	}
 
-	public List<Integer> getCloseTimes() {
+	public List<Long> getCloseTimes() {
 		return closeTimes;
 	}
 
-	public void setCloseTimes(List<Integer> closeTimes) {
+	public void setCloseTimes(List<Long> closeTimes) {
 		this.closeTimes = closeTimes;
 	}
 
@@ -101,13 +101,13 @@ public class Spot extends AbstractPersistable {
 	}
 
 	public int getOpenTimeCapId(Day day) {
-		int openTime = this.openTimes.get(day.getWeek_day());
-		return day.getRelativeTimeCapsuleIndex(openTime);
+		long openTime = this.openTimes.get(day.getWeek_day());
+		return (int) day.getRelativeTimeCapsuleIndex(openTime);
 	}
 
 	public int getCloseTimeCapId(Day day) {
-		int closeTime = this.closeTimes.get(day.getWeek_day());
-		return day.getRelativeTimeCapsuleIndex(closeTime);
+		long closeTime = this.closeTimes.get(day.getWeek_day());
+		return (int) day.getRelativeTimeCapsuleIndex(closeTime);
 	}
 
 	public Spot() {
@@ -120,8 +120,8 @@ public class Spot extends AbstractPersistable {
 				boolean gourmet,
 				double xLongitude,
 				double yLatitude,
-				List<Integer> openTimes,
-				List<Integer> closeTimes,
+				List<Long> openTimes,
+				List<Long> closeTimes,
 				float score) {
 		super(id);
 		this.spotId = spotId;

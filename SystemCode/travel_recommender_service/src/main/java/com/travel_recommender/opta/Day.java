@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Day extends AbstractPersistable {
 
-	private int start_time;
-	private int end_time;
-	private int lunch_start_time;
-	private int lunch_end_time;
-	private int dinner_start_time;
-	private int dinner_end_time;
+	private long start_time;
+	private long end_time;
+	private long lunch_start_time;
+	private long lunch_end_time;
+	private long dinner_start_time;
+	private long dinner_end_time;
 	private int week_day;
 	private int CapsuleDuration;
 	private List<TimeCapsule> timeCapsules;
@@ -23,43 +23,43 @@ public class Day extends AbstractPersistable {
 		super();
 	}
 
-	public int getStart_time() {
+	public long getStart_time() {
 		return this.start_time;
 	}
 
-	public void setStart_time(int start_time) {
+	public void setStart_time(long start_time) {
 		this.start_time = start_time;
 	}
 
-	public int getEnd_time() {
+	public long getEnd_time() {
 		return this.end_time;
 	}
 
-	public void setEnd_time(int end_time) {
+	public void setEnd_time(long end_time) {
 		this.end_time = end_time;
 	}
 
-	public int getLunch_start_time() {
+	public long getLunch_start_time() {
 		return this.lunch_start_time;
 	}
 
-	public void setLunch_start_time(int lunch_start_time) {
+	public void setLunch_start_time(long lunch_start_time) {
 		this.lunch_start_time = lunch_start_time;
 	}
 
-	public int getLunch_end_time() {
+	public long getLunch_end_time() {
 		return this.lunch_end_time;
 	}
 
-	public void setLunch_end_time(int lunch_end_time) {
+	public void setLunch_end_time(long lunch_end_time) {
 		this.lunch_end_time = lunch_end_time;
 	}
 
-	public int getDinner_start_time() {
+	public long getDinner_start_time() {
 		return this.dinner_start_time;
 	}
 
-	public void setDinner_start_time(int dinner_start_time) {
+	public void setDinner_start_time(long dinner_start_time) {
 		this.dinner_start_time = dinner_start_time;
 	}
 
@@ -71,11 +71,11 @@ public class Day extends AbstractPersistable {
 		CapsuleDuration = capsuleDuration;
 	}
 
-	public int getDinner_end_time() {
+	public long getDinner_end_time() {
 		return this.dinner_end_time;
 	}
 
-	public void setDinner_end_time(int dinner_end_time) {
+	public void setDinner_end_time(long dinner_end_time) {
 		this.dinner_end_time = dinner_end_time;
 	}
 
@@ -88,12 +88,12 @@ public class Day extends AbstractPersistable {
 	}
 
 	// Notice: `ID` here refers to Relative Index within EACH DAY
-	public int getRelativeTimeCapsuleIndex(int timeInMinute) {
-		return (int) Math.ceil((timeInMinute - this.start_time) / CapsuleDuration);
+	public long getRelativeTimeCapsuleIndex(long timeInMinute) {
+		return (long) Math.ceil((timeInMinute - this.start_time) / CapsuleDuration);
 	}
 
 	public boolean notMealTime(long timeCapsuleId) {
-		int relativeId = (int) timeCapsuleId % getRelativeTimeCapsuleIndex(end_time);
+		long relativeId = timeCapsuleId % getRelativeTimeCapsuleIndex(end_time);
 		return relativeId < getRelativeTimeCapsuleIndex(lunch_start_time) || relativeId > getRelativeTimeCapsuleIndex(dinner_end_time) ||
 				(relativeId > getRelativeTimeCapsuleIndex(lunch_end_time) && relativeId < getRelativeTimeCapsuleIndex(dinner_start_time));
 	}
@@ -115,8 +115,8 @@ public class Day extends AbstractPersistable {
 		this.score = score;
 	}
 
-	public Day(Long id, int start_time, int end_time, int lunch_start_time,
-			   int lunch_end_time, int dinner_start_time, int dinner_end_time,
+	public Day(Long id, long start_time, long end_time, long lunch_start_time,
+			   long lunch_end_time, long dinner_start_time, long dinner_end_time,
 			   int week_day, int score, int capsuleDuration) {
 		super(id);
 		this.start_time = start_time;

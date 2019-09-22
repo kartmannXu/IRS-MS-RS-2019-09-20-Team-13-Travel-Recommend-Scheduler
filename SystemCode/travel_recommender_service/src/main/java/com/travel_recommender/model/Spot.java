@@ -112,7 +112,7 @@ public class Spot {
     }
 
     public String getSpot_name() {
-        return Spot_name;
+        return Spot_name.replace("_", " ");
     }
 
     public void setAddr(int Addr){

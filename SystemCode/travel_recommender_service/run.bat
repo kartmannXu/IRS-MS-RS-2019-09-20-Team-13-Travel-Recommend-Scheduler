@@ -1,40 +1,39 @@
 @echo off
 
-set bar=======================================================
 set modeldir=travel_recommender_model
 set kjardir=travel-recommender
 set servicedir=travel_recommender_service
 set frontenddir=travel_recommender_frontend
 
 cd ..
-echo %bar%
-echo Entering %frontenddir%, compiling Angular JS
-echo %bar%
+echo ==============================
+echo Entering %frontenddir%, compiling
+echo ==============================
 cd %frontenddir%
 call npm -v
+call ng -v
 call npm i -s
-call npm install --save-dev @angular-devkit/build-angular
-call ng version
-start CMD /C call ng serve
+start /b ng serve
+
 
 cd ..
-echo %bar%
+echo ==============================
 echo Entering %modeldir%, compiling
-echo %bar%
+echo ==============================
 cd %modeldir%
 call mvn clean install
 
 cd ..
-echo %bar%
+echo ==============================
 echo Entering %kjardir%, compiling
-echo %bar%
+echo ==============================
 cd %kjardir% 
 call mvn clean install
 
 cd ..
-echo %bar%
+echo ==============================
 echo Entering %servicedir%, running service
-echo %bar%
+echo ==============================
 cd %servicedir% 
 call mvn spring-boot:run
 

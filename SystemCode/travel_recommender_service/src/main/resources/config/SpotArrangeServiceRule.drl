@@ -116,9 +116,9 @@ rule "No Exceed Time of Spot"
             sum($capsuleCost)
         )
     then
-        int timeCapsuleTotNum = $day.getRelativeTimeCapsuleIndex($day.getEnd_time());
+        long timeCapsuleTotNum = $day.getRelativeTimeCapsuleIndex($day.getEnd_time());
         if (timeCapsuleTotNum < $totalScheduledCaps.intValue()) {
-            scoreHolder.addHardConstraintMatch(kcontext, timeCapsuleTotNum - $totalScheduledCaps.intValue());
+            scoreHolder.addHardConstraintMatch(kcontext, (int) timeCapsuleTotNum - $totalScheduledCaps.intValue());
         }
 end
 
