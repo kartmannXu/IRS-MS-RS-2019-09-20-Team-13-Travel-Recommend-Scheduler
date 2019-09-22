@@ -41,7 +41,7 @@ export class SecondPageComponent implements OnInit {
 			qnsFoodExpectation: true,
 			qnsCultural: true,
 			qnsCrowded: true,
-			qnsBudget: 1000,
+			qnsBudget: 100,
 			qnsSouveniers: true,
 			qnsDowntown: true,
 			qnsView: true,
