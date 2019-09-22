@@ -11,10 +11,10 @@ echo Entering %frontenddir%, compiling
 echo ==============================
 cd %frontenddir%
 call npm -v
-call ng -v
 call npm i -s
-start /b ng serve
 
+call ng version
+start /b ng serve
 
 cd ..
 echo ==============================
