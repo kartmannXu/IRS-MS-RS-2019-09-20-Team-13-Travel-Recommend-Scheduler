@@ -27,11 +27,11 @@ __Prerequisites:__
 
 1. Make sure you have the following runnables at your local running environment, and all added to environment Path:
 	
-	1. Java jdk8
-	2. Maven 3.6.1
-	3. npm
+	1. [Java jdk8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+	2. [Maven 3.6.1](https://maven.apache.org/download.cgi)
+	3. [Node.js & npm](https://www.npmjs.com/package/xinui)
 
-2. Navigate to `travel_recommender_service` directory, simply click `run.bat`, which would take care of all the dependencies.
+2. Navigate to `travel_recommender_service` directory, double click `run.bat`(for windows) or `run.sh`(for Linux), which would take care of all the dependencies.
 
 3. Ignore the Reflections Warnings output in the terminal, if you finally see "Started application in XXX seconds", 
 
@@ -39,7 +39,7 @@ __Prerequisites:__
 
 
 __Notice__:
-To make sure the service has the geniune output, please check the departure date and leaving date you enter is after current date.
+To ensure the service has the genuine output, please kindly check the departure date and leaving date you enter is after current date.
 
 ---
 
