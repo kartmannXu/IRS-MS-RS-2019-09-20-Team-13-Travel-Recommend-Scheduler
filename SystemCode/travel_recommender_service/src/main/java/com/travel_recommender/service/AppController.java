@@ -202,7 +202,7 @@ public class AppController {
                 SpotSnippetViewModel spotVM = new SpotSnippetViewModel();
                 spotVM.setSpotId(snippet.getSpot().getSpotId());
                 Spot daoSpot = repo.findSpotBySpot_id(spotVM.getSpotId()).get(0);
-                spotVM.setSpotName(daoSpot.getSpot_name());
+                spotVM.setSpotName(daoSpot.getSpot_name().replace("_", " "));
 
                 // find day corresponding to the time capsule assigned to this spot snippet.
                 // filter out infeasible solutions

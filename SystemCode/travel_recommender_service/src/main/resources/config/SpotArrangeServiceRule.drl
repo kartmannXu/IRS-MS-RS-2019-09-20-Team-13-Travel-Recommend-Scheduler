@@ -42,123 +42,7 @@ rule "Reward SpotSnippet Consecutive 2 Arrangement"
 	then
 		System.out.println("Rewarding the arrange :" + $leftsnippet.getId() + "@" + $lcid +" - " + $rightsnippet.getId() + "@" + ($lcid + 1));
 		scoreHolder.addHardConstraintMatch(kcontext, 1);
-		insertLogical(new SpotConsecutiveSequence($spot, $leftcap, $rightcap));
 end
-
-rule "Reward SpotSnippet Consecutive 3 Arrangement"
-	when
-		SpotConsecutiveSequence($spot : spot, $firstcap : startCapsule, $secondcap : endCapsule)
-		SpotConsecutiveSequence(spot : spot, startCapsule == $secondcap, $thirdcap : endCapsule)
-	then
-		System.out.println("Rewarding the arrange length 3: Spot(" + $spot.getId() + ")@" + $firstcap.getId() +" - " + ($firstcap.getId() + 2));
-		scoreHolder.addHardConstraintMatch(kcontext, 2);
-end
-
-/*
-rule "Continuous Arrangement within Period"
-    salience 2
-	when
-		$leftcap : TimeCapsule($lcid : id)
-        $spot : Spot()
-		$leftsnippet : SpotSnippet(timeCapsule == $leftcap, spot == $spot, $siiS : snippetIndexInSpot)
-        $rightcap : TimeCapsule($rcid : id)
-        //SpotSnippet(spot == $spot, timeCapsule == $rightcap, snippetIndexInSpot == $siiS + 1)
-        //SpotConsecutiveSequence($spot : spot, $spand : getEndCapsuleId() - getStartCaspsuleId(), $startcapsule : startCapsule, $endcapsule : endCapsule)
-        $day : Day(timeCapsules contains $leftcap, timeCapsules contains $rightcap)
-    then
-        scoreHolder.addHardConstraintMatch(kcontext, - (int) Math.abs($rcid - $lcid - $spot.getRequiredTimeCapsuleNum($day)));
-end
-
-rule "insertSpotFullyArranged"
-    when
-        $day : Day($capduration : capsuleDuration)
-        $spot : Spot($estdur : est_duration)
-        SpotConsecutiveSequence(spot == $spot, endCapsule - startCapsule >= Math.ceil((float) $estdur / $capduration))
-    then
-        SpotFullyArranged spotFullyArranged = new SpotFullyArranged($spot, $day);
-        System.out.println("Inserting" + spotFullyArranged);
-        insertLogical(spotFullyArranged);
-end
-
-rule "insertTimeCapsuleAlreadyAssigned"
-    salience 2
-    when
-        $capsule : TimeCapsule()
-        $snippet : SpotSnippet(timeCapsule == $capsule)
-    then
-        System.out.println("TimeCapsule " + $capsule.getId() + "Already Assigned to snippet " + $snippet.getId());
-        insertLogical(new TimeCapsuleAlreadyAssigned($capsule, $snippet));
-end
-
-rule "updateEmptySnippet"
-    salience 1
-    when
-        $capsule : TimeCapsule()
-        not TimeCapsuleAlreadyAssigned(timeCapsule == $capsule)
-        $snippet : SpotSnippet(timeCapsule != null, $spot : spot)
-        not SpotConsecutiveStart(spot == $spot)
-    then
-        update($snippet) {$snippet.setTimeCapsule($capsule);};
-        System.out.println("Update snippet " + $snippet + " with capsule " + $capsule);
-end
-
-rule "bailing out snippet"
-    when
-        SpotFullyArranged($spot : spot)
-        SpotConsecutiveSequence($startcapId: getStartCaspsuleId(), $endcapId : getEndCapsuleId())
-        $capsule : TimeCapsule($cid : id)
-        $snippet : SpotSnippet(spot == $spot, $cid < $startcapId || $cid > $endcapId)
-    then
-        update($snippet) {$snippet.setTimeCapsule(null);}
-end
-
-rule "insertSpotConsecutiveStart"
-        salience 2
-    when
-        SpotSnippet($spot : spot, $leftcapsule : timeCapsule != null, $ssid : snippetIndexInSpot)
-        not SpotSnippet(spot == $spot, timeCapsule != null, snippetIndexInSpot == $ssid - 1)
-    then
-        SpotConsecutiveStart spotConsecutiveStart = new SpotConsecutiveStart($spot, $leftcapsule);
-        System.out.println(spotConsecutiveStart);
-        insertLogical(spotConsecutiveStart);
-end
-
-rule "insertSpotConsecutiveEnd"
-         salience 2
-     when
-         SpotSnippet($spot : spot, $leftcapsule : timeCapsule != null, $ssid : snippetIndexInSpot)
-         not SpotSnippet(spot == $spot, timeCapsule != null, snippetIndexInSpot == $ssid + 1)
-     then
-         SpotConsecutiveEnd spotConsecutiveEnd = new SpotConsecutiveEnd($spot, $leftcapsule);
-         System.out.println(spotConsecutiveEnd);
-         insertLogical(spotConsecutiveEnd);
- end
-
-rule "insertSpotConsecutiveSequence"
-    salience 1
-    when
-        SpotConsecutiveStart($spot : spot, $startCapsule : timeCapsule)
-        SpotConsecutiveEnd(spot == $spot, $endCapsule : timeCapsule)
-        not SpotConsecutiveEnd(spot == $spot, timeCapsule >= $startCapsule && timeCapsule < $endCapsule)
-    then
-        SpotConsecutiveSequence spotConsecutiveSequence = new SpotConsecutiveSequence($spot, $startCapsule, $endCapsule);
-        System.out.println(spotConsecutiveSequence);
-        insertLogical(spotConsecutiveSequence);
-end
-
-rule "Append Spot Snippet to End of Sequence"
-    when
-        $emptycapsule : TimeCapsule()
-        not TimeCapsuleAlreadyAssigned(timeCapsule == $emptycapsule)
-        $spot : Spot()
-        $day : Day(timeCapsules contains $emptycapsule)
-        not SpotFullyArranged(spot == $spot, day == $day)
-        $emptysnippet : SpotSnippet(spot == $spot, timeCapsule == null)
-    then
-        System.out.println("Appending spotsnippet to " + $spot + "on capsule: " + $emptycapsule);
-        update($emptysnippet) {$emptysnippet.setTimeCapsule($emptycapsule);}
-end
-*/
 
 rule "No visit Accross Days"
     when
@@ -175,30 +59,6 @@ rule "No visit Accross Days"
     then
         scoreHolder.addHardConstraintMatch(kcontext, -1);
 end// todo: change the value of hardconstraint
-
-/*
-rule "Visit Spot Once"
-    salience 2
-    when
-        $leftcapsule : TimeCapsule($lcid : id)
-        $day : Day(timeCapsules contains $leftcapsule)
-        $spot : Spot()
-        $leftsnippet : SpotSnippet( spot == $spot,
-                                    timeCapsule == $leftcapsule,
-                                    $lpid : id)
-        $rightcapsule : TimeCapsule($rcid: id > $lcid)
-        SpotSnippet(spot == $spot, timeCapsule == $rightcapsule, $rpid : id > $lpid)
-    then
-        int capsulenum = $spot.getRequiredTimeCapsuleNum($day);
-		int totcapsulenumPerDay = $day.getRelativeTimeCapsuleIndex($day.getEnd_time());
-        if (($rcid - $lcid != $rpid - $lpid) ||
-			($rcid - $lcid > capsulenum - 1)) {
-			System.out.println("lcid:" + $lcid + "rcid:" + $rcid + " - required:" + capsulenum);
-            scoreHolder.addHardConstraintMatch(kcontext, 10 * ($lcid.intValue() - $rcid.intValue()));
-        } else {
-            scoreHolder.addSoftConstraintMatch(kcontext, 0);
-        }
-end*/
 
 rule "visitSpotOnce"
     salience 2
@@ -234,12 +94,13 @@ rule "Reserve Travel Time Between Spots"
         $rightspot : Spot(id != $sid)
         $leftsnippet : SpotSnippet( spot == $leftspot,
                                     timeCapsule == $leftcapsule)
-        $othercapsule : TimeCapsule(id != $leftcapsuleId)
+        $othercapsule : TimeCapsule(id >= $leftcapsuleId)
         exists SpotSnippet( spot == $rightspot, snippetIndexInSpot == 0, timeCapsule == $othercapsule)
     then
         int travelcapsulenum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
         int capsulenum = $rightspot.getRequiredTimeCapsuleNum($day);
         if ($leftsnippet.getSnippetIndexInSpot() == capsulenum - 1 && $othercapsule.getId() - $leftcapsuleId < travelcapsulenum) {
+			System.out.println("Punishing Insufficient traveltime: " + ($othercapsule.getId() - $leftcapsuleId) + ", need " + travelcapsulenum + " capsules");
             scoreHolder.addHardConstraintMatch(kcontext, $othercapsule.getId().intValue() - $leftcapsuleId.intValue() - travelcapsulenum);
         } else {
             scoreHolder.addSoftConstraintMatch(kcontext, 0);
