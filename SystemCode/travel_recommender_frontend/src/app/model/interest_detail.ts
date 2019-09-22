@@ -42,7 +42,7 @@ export class interest_detail {
     
     // introduction text
     introduction:string;
-    Addr:string;
+    addr:string;
     imageUrl:string;
 }
 

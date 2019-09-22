@@ -34,14 +34,14 @@ export class SecondPageComponent implements OnInit {
 		this.AllResponse = 
 		{
 			qnsNatural : true,
-			qnsDepartureTime : "2019-10-12",
+			qnsDepartureTime : "2019-10-10",
 			qnsLeavingTime : "2019-10-16",
 			qnsCountryId:0,
 			qnsKidElder: true,
 			qnsFoodExpectation: true,
 			qnsCultural: true,
 			qnsCrowded: true,
-			qnsBudget: 100,
+			qnsBudget: 1000,
 			qnsSouveniers: true,
 			qnsDowntown: true,
 			qnsView: true,
