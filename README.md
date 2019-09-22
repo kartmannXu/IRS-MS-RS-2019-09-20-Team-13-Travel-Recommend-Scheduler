@@ -2,7 +2,6 @@ IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
 ===
 
 ## SECTION 1 : PROJECT TITLE
-
 ---
 Travel-Recommend-Schedule-System
 
@@ -50,6 +49,6 @@ To make sure the service has the geniune output, please check the departure date
 
 ## SECTION 6 : PROJECT REPORT / PAPER
 
-`<Github File Link>` : <>
+`<Github File Link>` : <ProjectReport/report.pdf>
 
 ## SECTION 7 : MISCELLANEOUS
