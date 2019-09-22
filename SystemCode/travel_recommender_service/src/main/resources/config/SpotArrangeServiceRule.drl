@@ -29,7 +29,7 @@ rule "One TimeCapsule to One Spotsnippet"
             sum($score)
         )
     then
-        scoreHolder.addHardConstraintMatch(kcontext, - 10 * $conflictNum.intValue());
+        scoreHolder.addHardConstraintMatch(kcontext, - $conflictNum.intValue());
 end
 
 rule "Reward SpotSnippet Consecutive 2 Arrangement"
