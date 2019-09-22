@@ -1,4 +1,4 @@
-IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
+IRS-MS&RS-2019-09-20-Team 13-Travel-Recommend&Scheduler
 ===
 
 ## SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
