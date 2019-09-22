@@ -11,7 +11,7 @@ In order to solve tourists' different problems, our team has put forward a trave
 | Official Full Name  | Student ID (MTech Applicable)  | Work Items (Who Did What) | Email (Optional) |
 | :------------ |:---------------:| :-----| :-----|
 | Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database Configurating, Spring-boot Backend Developing, JBPM-Maven Integration, Optaplanner Scheduler Developing, UserGuide | E0401960@u.nus.edu |
-| Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, UI Designing, Video, Optaplanner Testing and Fixing | E0402060@u.nus.edu |
+| Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, UI Designing, Video, Testing and Fixing | E0402060@u.nus.edu |
 |  |  |  |
 
 ---
