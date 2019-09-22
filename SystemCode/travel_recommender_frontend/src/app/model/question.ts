@@ -82,7 +82,7 @@ export const question: question_box[] = [
   },
     {
     id:	11,
-	question: "Could you estimate your budget for the whole trip?",
+	question: "Could you estimate your budget for the whole trip?(Optional)",
 	hidden:	1,
 	type:3,//1.checkbox 2.date 3.edit 4.dropbox
 	field:"qnsBudget",

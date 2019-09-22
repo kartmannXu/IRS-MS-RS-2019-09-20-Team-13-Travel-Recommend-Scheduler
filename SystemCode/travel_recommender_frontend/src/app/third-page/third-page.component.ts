@@ -88,7 +88,7 @@ export class ThirdPageComponent implements OnInit {
 				n--;
 				await this.delay(20000);
 				const second = await this.getStatus(this.response_now.id);
-				console.log(second);
+
 				if(second == "STOPPED")
 				{
 					n = -3;
@@ -98,7 +98,7 @@ export class ThirdPageComponent implements OnInit {
 			{
 				const fourth = await this.getResultList(this.response_now.id);
 				this.interest_list = fourth as interest_detail[];
-				this.spotListDealFunc();
+				await this.spotListDealFunc();
 
 
 
@@ -291,7 +291,8 @@ export class ThirdPageComponent implements OnInit {
 						if(newPosition == 0){
 							//说明没有新位置，删
 							for(var spotListIndex = 0; spotListIndex<this.interest_list.length;spotListIndex++){
-								if(this.interest_list[spotListIndex].spot_id = spot_id){
+								if(this.interest_list[spotListIndex].spot_id == spot_id){
+									console.log("name:"+this.interest_list[spotListIndex].spot_name+"Id"+this.interest_list[spotListIndex].spot_id)
 									this.interest_list.splice(spotListIndex,1);
 									break;
 								}

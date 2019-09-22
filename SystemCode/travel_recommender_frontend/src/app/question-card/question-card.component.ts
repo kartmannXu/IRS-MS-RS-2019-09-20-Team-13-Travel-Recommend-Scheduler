@@ -49,7 +49,10 @@ export class QuestionCardComponent implements OnInit {
      var date1:number =result.getFullYear();
      var date2 :number=result.getMonth()+1;
      var date3:number=result.getDate();
-     var date_string:string=date1+ "-"+date2 + "-" +date3;
+     var datestr1:string = date1.toString();
+     var datestr2:string = (date2<10)?("0"+date2.toString()):date2.toString();
+     var datestr3:string = (date3<10)?("0"+date3.toString()):date3.toString();
+     var date_string:string=datestr1+ "-"+ datestr2+ "-" +datestr3;
     this.Answer_box.date = date_string;
     this.Answer_box.id = this.questions.id;
     this.Answer_box.type = 2;

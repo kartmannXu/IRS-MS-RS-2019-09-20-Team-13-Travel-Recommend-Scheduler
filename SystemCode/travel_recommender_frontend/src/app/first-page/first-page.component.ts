@@ -48,6 +48,7 @@ export class FirstPageComponent implements OnInit {
 
   ngOnInit() {
     // this.questions[0].hidden = 0;
+    this.response_new.qnsBudget = 10000; //default budget
     this.question_now = this.questions[0]
 
   }
@@ -93,7 +94,7 @@ export class FirstPageComponent implements OnInit {
             this.questions[i+1].hidden = 0;
             this.question_now = this.questions[i+1];
           }
-        else if(i == this.questions.length-1){
+        if(i == this.questions.length-2){
           this.next_hidden = 0;
         // this.messageService.add('come to the hidden');
         }

@@ -31,23 +31,23 @@ export class SecondPageComponent implements OnInit {
 
 	ngOnInit() {
 		//only use post
-		// this.AllResponse = 
-		// {
-		// 	qnsNatural : true,
-		// 	qnsDepartureTime : "2019-10-10",
-		// 	qnsLeavingTime : "2019-10-16",
-		// 	qnsCountryId:0,
-		// 	qnsKidElder: true,
-		// 	qnsFoodExpectation: true,
-		// 	qnsCultural: true,
-		// 	qnsCrowded: true,
-		// 	qnsBudget: 1000,
-		// 	qnsSouveniers: true,
-		// 	qnsDowntown: true,
-		// 	qnsView: true,
-		// 	types: "Gardens,Parks,Museums,Observation_deck,Zoo,Themeparks,Neighbourhoods,Religious_Sites,Landmarks,Historical_Sites,Island,Shopping_Malls,Bridges,Activities,Beaches",
-		// 	id:10,
-		// };
+		this.AllResponse = 
+		{
+			qnsNatural : false,
+			qnsDepartureTime : "2019-10-10",
+			qnsLeavingTime : "2019-10-13",
+			qnsCountryId:0,
+			qnsKidElder: true,
+			qnsFoodExpectation: true,
+			qnsCultural: false,
+			qnsCrowded: true,
+			qnsBudget: 1000,
+			qnsSouveniers: true,
+			qnsDowntown: true,
+			qnsView: false,
+			types: "Gardens,Parks,Museums,Observation_deck,Zoo,Themeparks,Neighbourhoods,Religious_Sites,Landmarks,Historical_Sites,Island,Shopping_Malls,Bridges,Activities,Beaches",
+			id:10,
+		};
 
 		this.httpClientService.setRes(this.AllResponse).subscribe(
 				response =>this.handleSuccessfulResponse(response),
