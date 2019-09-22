@@ -31,6 +31,29 @@ rule "One TimeCapsule to One Spotsnippet"
     then
         scoreHolder.addHardConstraintMatch(kcontext, - 10 * $conflictNum.intValue());
 end
+
+rule "Reward SpotSnippet Consecutive 2 Arrangement"
+	when
+		$leftcap : TimeCapsule($lcid : id)
+		$rightcap : TimeCapsule(id == $lcid + 1)
+		Day(timeCapsules contains $leftcap, timeCapsules contains $rightcap)
+		$leftsnippet : SpotSnippet($spot : spot, timeCapsule == $leftcap, $ssid : snippetIndexInSpot)
+		$rightsnippet : SpotSnippet(spot == $spot, timeCapsule == $rightcap, snippetIndexInSpot == $ssid + 1)
+	then
+		System.out.println("Rewarding the arrange :" + $leftsnippet.getId() + "@" + $lcid +" - " + $rightsnippet.getId() + "@" + ($lcid + 1));
+		scoreHolder.addHardConstraintMatch(kcontext, 1);
+		insertLogical(new SpotConsecutiveSequence($spot, $leftcap, $rightcap));
+end
+
+rule "Reward SpotSnippet Consecutive 3 Arrangement"
+	when
+		SpotConsecutiveSequence($spot : spot, $firstcap : startCapsule, $secondcap : endCapsule)
+		SpotConsecutiveSequence(spot : spot, startCapsule == $secondcap, $thirdcap : endCapsule)
+	then
+		System.out.println("Rewarding the arrange length 3: Spot(" + $spot.getId() + ")@" + $firstcap.getId() +" - " + ($firstcap.getId() + 2));
+		scoreHolder.addHardConstraintMatch(kcontext, 2);
+end
+
 /*
 rule "Continuous Arrangement within Period"
     salience 2
@@ -44,8 +67,8 @@ rule "Continuous Arrangement within Period"
         $day : Day(timeCapsules contains $leftcap, timeCapsules contains $rightcap)
     then
         scoreHolder.addHardConstraintMatch(kcontext, - (int) Math.abs($rcid - $lcid - $spot.getRequiredTimeCapsuleNum($day)));
-end*/
-/*
+end
+
 rule "insertSpotFullyArranged"
     when
         $day : Day($capduration : capsuleDuration)
@@ -214,10 +237,10 @@ rule "Reserve Travel Time Between Spots"
         $othercapsule : TimeCapsule(id != $leftcapsuleId)
         exists SpotSnippet( spot == $rightspot, snippetIndexInSpot == 0, timeCapsule == $othercapsule)
     then
-        double travelcapsulenum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
+        int travelcapsulenum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
         int capsulenum = $rightspot.getRequiredTimeCapsuleNum($day);
         if ($leftsnippet.getSnippetIndexInSpot() == capsulenum - 1 && $othercapsule.getId() - $leftcapsuleId < travelcapsulenum) {
-            scoreHolder.addHardConstraintMatch(kcontext, -1);
+            scoreHolder.addHardConstraintMatch(kcontext, $othercapsule.getId().intValue() - $leftcapsuleId.intValue() - travelcapsulenum);
         } else {
             scoreHolder.addSoftConstraintMatch(kcontext, 0);
         }

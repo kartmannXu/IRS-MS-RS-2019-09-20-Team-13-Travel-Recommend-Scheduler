@@ -23,7 +23,6 @@
     </acceptor>
     <forager>
       <acceptedCountLimit>800</acceptedCountLimit>
-      <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
     </forager>
     <unionMoveSelector>
       <!--<moveListFactory>-->
@@ -39,7 +38,7 @@
     </unionMoveSelector>
 
     <termination>
-      <unimprovedMillisecondsSpentLimit>3000</unimprovedMillisecondsSpentLimit>
+      <unimprovedMillisecondsSpentLimit>1000</unimprovedMillisecondsSpentLimit>
     </termination>
   </localSearch>
 </solver>
