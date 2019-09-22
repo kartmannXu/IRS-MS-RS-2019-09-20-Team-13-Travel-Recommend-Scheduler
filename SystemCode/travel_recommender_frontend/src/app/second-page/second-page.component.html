@@ -1,4 +1,7 @@
-<h2>Delete the place you don't like.</h2>
+
+
+
+<h1>Click Card to delete the place you don't like.</h1>
 <nz-spin nzSimple [nzSize]="'large'" [nzSpinning]="isSpinning">
 <!-- 	<nz-alert
         [nzType]="'info'"
@@ -7,7 +10,7 @@
       >
       </nz-alert> -->
 </nz-spin>
-<nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
+<!-- <nz-checkbox-wrapper style="width: 100%;" (nzOnChange)="log($event)">
       
 
 <div *ngFor="let type of attrictions_list" style = "display: inline-block; ">
@@ -15,8 +18,61 @@
       		<nz-tag nzMode="closeable" (nzAfterClose)="afterClose(type)">{{type}}</nz-tag>
         </div>
       </div>
-</nz-checkbox-wrapper>
-<div class = "BFbutton">
+</nz-checkbox-wrapper> -->
+
+
+    <div style="background: #FFFFFF;padding:30px;">
+      <div nz-row [nzGutter]="3">
+        
+			<div *ngFor="let page2TypeC of page2TypeCardList" >
+				<div nz-col [nzSpan]="3">
+<!-- 					<nz-card nzHoverable style="width:300px"
+					[nzCover]="coverTemplate"
+					[nzActions]="[actionSetting, actionEdit]"">
+					<nz-card-meta [nzTitle]="type" 
+					[nzAvatar]="avatarTemplate"
+					></nz-card-meta> -->
+				<nz-card nzHoverable [nzTitle]="page2TypeC.Type" [nzSize] = "'small'" (click) = cardClick(page2TypeC.id) [hidden] = "page2TypeC.hiddenFlag">
+		            <img class = "picInPage2" [src] = "page2TypeC.imgUrl" >
+		          </nz-card>
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+<!-- 		<div class = "intest_detial" >
+			<div *ngFor="let type of attrictions_list" >
+
+				<div nz-col class="gutter-row" nzSpan="3">
+					<nz-card nzHoverable style="width:300px"
+					[nzCover]="coverTemplate"
+					[nzActions]="[actionSetting, actionEdit]"">
+					<nz-card-meta [nzTitle]="type" 
+					[nzAvatar]="avatarTemplate"
+					></nz-card-meta>
+				</nz-card>
+				<ng-template #coverTemplate>
+						<img alt="example" [src]="interet.imageUrl" />
+					</ng-template>
+					<ng-template #actionSetting>
+
+					</ng-template>
+					<ng-template #actionEdit>
+
+					</ng-template>
+			</div>
+		</div>
+	</div> -->
+
+
+<div class = "BFbutton" [hidden] = "isSpinning">
       <button nz-button nzType="primary"
        (click)="nextpage()">Forward 
 

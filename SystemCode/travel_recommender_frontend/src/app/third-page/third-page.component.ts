@@ -145,18 +145,23 @@ export class ThirdPageComponent implements OnInit {
 			let calculateduration:number = 30;
 			for(let i = 0; i<this.spotSnippetViewModel_list.length;i++)
 			{
-				//if spotid change then endtrigger equal to 1
-				if(spot_id != this.spotSnippetViewModel_list[i].spotId&& endtrigger == 1){
+				if(spot_id != this.spotSnippetViewModel_list[i].spotId){
+					//begin to find list
 					spot_id = this.spotSnippetViewModel_list[i].spotId;
-					mincapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
-					maxcapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
-					nDay = this.spotSnippetViewModel_list[i].day;
-					endtrigger = -1;
-				}
-				else if((spot_id != this.spotSnippetViewModel_list[i].spotId || i == this.spotSnippetViewModel_list.length -1) && endtrigger == -1){
-					if (i != this.spotSnippetViewModel_list.length -1) {
-						i -= 1;
+					for(let i = 0; i<this.spotSnippetViewModel_list.length;i++){
+						if (spot_id == this.spotSnippetViewModel_list[i].spotId) {
+							if(mincapusule>this.spotSnippetViewModel_list[i].timeCapsuleId){
+								mincapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
+							}
+							if(maxcapusule<this.spotSnippetViewModel_list[i].timeCapsuleId){
+								maxcapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
+							}
+							if(nDay<this.spotSnippetViewModel_list[i].day){
+								nDay = this.spotSnippetViewModel_list[i].day;
+							}
+						}
 					}
+
 					var schedule_temp:schedule = {	Id: 2,
 					Subject: "ChinaTown",
 					StartTime: new Date(2019,8,6,9,30),
@@ -176,21 +181,6 @@ export class ThirdPageComponent implements OnInit {
 						);
 					scheduleListinFunc.push(schedule_temp);
 					n++;
-					
-					endtrigger = 1;
-					mincapusule = 50;
-					maxcapusule = 0;
-				}
-				else{
-					if(mincapusule>this.spotSnippetViewModel_list[i].timeCapsuleId){
-						mincapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
-					}
-					if(maxcapusule<this.spotSnippetViewModel_list[i].timeCapsuleId){
-						maxcapusule = this.spotSnippetViewModel_list[i].timeCapsuleId;
-					}
-					if(nDay<this.spotSnippetViewModel_list[i].day){
-						nDay = this.spotSnippetViewModel_list[i].day;
-					}
 				}
 
 			}
