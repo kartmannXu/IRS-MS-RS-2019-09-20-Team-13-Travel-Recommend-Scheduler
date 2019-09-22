@@ -14,7 +14,7 @@ IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
 
 | Official Full Name  | Student ID (MTech Applicable)  | Work Items (Who Did What) | Email (Optional) |
 | :------------ |:---------------:| :-----| :-----|
-|  |  |  |
+| Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database configurating, Spring-boot Backend developing, JBPM-Maven integration, Optaplanner Scheduler Developing, UserGuide | |
 |  |  |  |
 |  |  |  |
 
@@ -27,8 +27,23 @@ IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
 
 ## SECTION 5 : USER GUIDE
 
-`<Github File Link>` : <>
+__Prerequisites:__
 
+1. Make sure you have the following runnables at your local running environment, and all added to environment Path:
+	
+	1. Java jdk8
+	2. Maven 3.6.1
+	3. npm
+
+2. Navigate to `travel_recommender_service` directory, simply click `run.bat`, which would take care of all the dependencies.
+
+3. Ignore the Reflections Warnings output in the terminal, if you finally see "Started application in XXX seconds", 
+
+4. Open `localhost:4200` in your web brouser, preferably Google Chrome, and it's good to go.
+
+
+__Notice__:
+To make sure the service has the geniune output, please check the departure date and leaving date you enter is after current date.
 
 ---
 
