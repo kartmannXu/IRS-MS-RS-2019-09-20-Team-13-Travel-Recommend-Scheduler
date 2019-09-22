@@ -12,13 +12,13 @@ In order to solve tourists' different problems, our team has put forward a trave
 | :------------ |:---------------:| :-----| :-----|
 | Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database Configurating, Spring-boot Backend Developing, JBPM-Maven Integration, Optaplanner Scheduler Developing, UserGuide | E0401960@u.nus.edu |
 | Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, UI Designing, Video, Testing and Fixing | E0402060@u.nus.edu |
-|  |  |  |
-
+| Yu Xiaoxi  | A0198461U | KIE Design and Implementation, Web-Crawler, Model Architecture, Project Report, Project Video | E0402002@u.nus.edu
+ 
 ---
 
 ## SECTION 4 : VIDEO OF SYSTEM MODELLING & USE CASE DEMO
 
-
+https://youtu.be/Dw3T069bgg4
 ---
 
 ## SECTION 5 : USER GUIDE
