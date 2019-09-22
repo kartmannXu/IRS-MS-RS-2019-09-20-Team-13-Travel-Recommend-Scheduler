@@ -49,6 +49,6 @@ To make sure the service has the geniune output, please check the departure date
 
 ## SECTION 6 : PROJECT REPORT / PAPER
 
-`<Github File Link>` : <ProjectReport/report.pdf>
+`<Github File Link>` : <>
 
 ## SECTION 7 : MISCELLANEOUS
