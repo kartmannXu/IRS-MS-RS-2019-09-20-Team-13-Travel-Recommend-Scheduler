@@ -29,7 +29,7 @@ rule "One TimeCapsule to One Spotsnippet"
             sum($score)
         )
     then
-        scoreHolder.addHardConstraintMatch(kcontext, - $conflictNum.intValue());
+        scoreHolder.addHardConstraintMatch(kcontext, - 10 * $conflictNum.intValue());
 end
 
 rule "Reward SpotSnippet Consecutive 2 Arrangement"
@@ -173,7 +173,7 @@ rule "Minimize Travel Time"
         int capsulenum = $leftspot.getRequiredTimeCapsuleNum($day);
         int travelcapNum = $rightspot.getTravelRequiredTimeCapNum($leftspot, $day);
         if ($snippetIndexInSpot == (capsulenum - 1)) {
-            scoreHolder.addSoftConstraintMatch(kcontext, - travelcapNum);
+            scoreHolder.addHardConstraintMatch(kcontext, $lcid.intValue() - $rcid.intValue() + travelcapNum);
         }
         // System.out.println("Travel caps between " + $lsid + " and " + $rightspot.id + " = " + travelcapNum);
 end

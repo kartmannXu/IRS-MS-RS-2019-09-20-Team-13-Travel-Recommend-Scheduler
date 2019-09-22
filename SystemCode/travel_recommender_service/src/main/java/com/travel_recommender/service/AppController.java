@@ -133,7 +133,7 @@ public class AppController {
                             BindingResult bindingResult) throws ValidationException, ParseException {
 
         if (bindingResult.hasErrors()) { throw new ValidationException("Error in storing your answer"); };
-
+		
         String types = usrAnsVM.getTypes().toLowerCase();
         if (!types.contains("gardens")) { userAnswersHolder.setGardens(false); }
         if (!types.contains("parks")) { userAnswersHolder.setParks(false); }
@@ -179,7 +179,7 @@ public class AppController {
                     boolToInt(userAnswersHolder.isBeaches()))
         );
         eliminateListBasedOnBudget(clientId);
-        System.out.println(clientIdToResultList);
+        System.out.println(userAnswersHolder.getQnsDepartureTime() + " - " + userAnswersHolder.getQnsLeavingTime());
         solveService(clientId);
     }
 

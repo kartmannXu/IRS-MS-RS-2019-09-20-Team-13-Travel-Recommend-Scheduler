@@ -17,13 +17,8 @@
     <constructionHeuristicType>WEAKEST_FIT</constructionHeuristicType>
   </constructionHeuristic>
   <localSearch>
-    <!--<localSearchType>LATE_ACCEPTANCE</localSearchType> -->
-    <acceptor>
-      <entityTabuSize>7</entityTabuSize>
-    </acceptor>
-    <forager>
-      <acceptedCountLimit>800</acceptedCountLimit>
-    </forager>
+    <localSearchType>LATE_ACCEPTANCE</localSearchType>
+    
     <unionMoveSelector>
       <!--<moveListFactory>-->
       <!--  <cacheType>PHASE</cacheType>-->

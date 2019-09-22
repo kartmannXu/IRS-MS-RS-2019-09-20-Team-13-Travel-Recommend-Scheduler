@@ -37,6 +37,7 @@ __Prerequisites:__
 
 4. Open `localhost:4200` in your web brouser, preferably Google Chrome, and it's good to go.
 
+For more detailed User Manual, please check the full [document](https://github.com/kartmannXu/IRS-MS-RS-2019-09-20-Team-13-Travel-Recommend-Scheduler/blob/final/UserGuide/UserGuide.pdf).
 
 __Notice__:
 To ensure the service has the genuine output, please kindly check the departure date and leaving date you enter is after current date.
@@ -48,3 +49,7 @@ To ensure the service has the genuine output, please kindly check the departure 
 `<Github File Link>` : <https://github.com/kartmannXu/MSRS-GP/blob/final/ProjectReport/report.pdf>
 
 ## SECTION 7 : MISCELLANEOUS
+
+#### [`Spot data`](https://github.com/kartmannXu/IRS-MS-RS-2019-09-20-Team-13-Travel-Recommend-Scheduler/blob/final/Miscellaneous/data.csv)
+
+Aggregated Spot data in Singapore
