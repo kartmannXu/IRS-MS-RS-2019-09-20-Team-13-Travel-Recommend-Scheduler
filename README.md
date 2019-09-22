@@ -2,20 +2,20 @@ IRS-MS&RS-2019-09-20-Team-Travel-Recommend-Schedule-System
 ===
 
 ## SECTION 1 : PROJECT TITLE
-
-
 ---
+Travel-Recommend-Schedule-System
 
 ## SECTION 2 : EXECUTIVE SUMMARY / PAPER ABSTRACT
 
 ---
+In order to solve tourists' different problems, our team has put forward a travel recommendation and schedule system. This system can recommend corresponding scenic spots for users according to their preferences, and make a travel schedule for tourists according to the detailed information of scenic spots and the travel time. With this information, tourists can enjoy their holiday time without worry.
 
 ## SECTION 3 : CREDITS / PROJECT CONTRIBUTION
 
 | Official Full Name  | Student ID (MTech Applicable)  | Work Items (Who Did What) | Email (Optional) |
 | :------------ |:---------------:| :-----| :-----|
 | Xu Kaixin | A0198419M | Team Coordinator, Data Processing, H2database configurating, Spring-boot Backend developing, JBPM-Maven integration, Optaplanner Scheduler Developing, UserGuide | |
-|  |  |  |
+| Zhang Zhilin | A0198519L | Front-end code, Web-Crawler, video, Optaplanner testing and fixing | E0402060@u.nus.edu|
 |  |  |  |
 
 ---
